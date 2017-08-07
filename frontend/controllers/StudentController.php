@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\StudentsClass;
 use Yii;
 use common\models\User;
 use common\models\StudentSearch;
@@ -65,11 +66,29 @@ class StudentController extends Controller
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $loadedFlag = $model->load(Yii::$app->request->post());
+        if($loadedFlag){
+            $model->status = 2;
+            //TODO Assign Student Role to User
+        }
+
+        if ($loadedFlag && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            $us = User::findCurrentUser();
+            $classes = StudentsClass::find()->where(['school_id' => $us->school_id])->all();
+            $classesArray = [];
+            $i = 0;
+            foreach($classes as $cl){
+                $classesArray[$i]["name"] = $cl->number.$cl->register;
+                $i++;
+            }
+
+
             return $this->render('create', [
                 'model' => $model,
+                'classes' => $classesArray
             ]);
         }
     }

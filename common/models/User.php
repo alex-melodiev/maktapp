@@ -113,6 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'email'], 'unique'],
+            [['school_id'], 'integer'],
             ['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
             ['status', 'in', 'range' => array_keys(self::statuses())],
             [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode']
@@ -132,6 +133,7 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => Yii::t('common', 'Created at'),
             'updated_at' => Yii::t('common', 'Updated at'),
             'logged_at' => Yii::t('common', 'Last login'),
+            'school_id' => Yii::t('common', 'School ID')
         ];
     }
 
@@ -152,6 +154,10 @@ class User extends ActiveRecord implements IdentityInterface
             ->active()
             ->andWhere(['id' => $id])
             ->one();
+    }
+
+    public static function findCurrentUser(){
+        return User::findIdentity(Yii::$app->user->id);
     }
 
     /**

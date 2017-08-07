@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use Yii;
 use common\models\StudentsClass;
 use common\models\StudentsClassSearch;
@@ -64,10 +65,20 @@ class StudentsClassController extends Controller
     public function actionCreate()
     {
         $model = new StudentsClass();
+        $loadedFlag = $model->load(Yii::$app->request->post());
+        $us = User::find()->where(['id' =>  Yii::$app->user->id])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($loadedFlag){
+            $model->curator_id = Yii::$app->user->id;
+
+            $model->school_id =$us->school_id;
+        }
+
+
+        if ($loadedFlag && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('create', [
                 'model' => $model,
             ]);

@@ -12,13 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'number')->textInput() ?>
+    <?= $form->field($model, 'number')->dropDownList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) ?>
 
-    <?= $form->field($model, 'register')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'register')->dropDownList(['А'=>'А', 'Б' => 'Б', 'В' => 'В', 'Г' => 'Г', 'Д' => 'Д', 'Е' => 'Е']) ?>
 
-    <?= $form->field($model, 'curator_id')->textInput() ?>
 
-    <?= $form->field($model, 'school_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('frontend', 'Create') : Yii::t('frontend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
