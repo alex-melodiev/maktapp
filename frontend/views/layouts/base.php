@@ -8,66 +8,70 @@ use yii\bootstrap\NavBar;
 
 $this->beginContent('@frontend/views/layouts/_clear.php')
 ?>
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]); ?>
-    <?php echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => Yii::t('frontend', 'Student'), 'url' => ['/student/index']],
-            ['label' => Yii::t('frontend', 'Teacher'), 'url' => ['/teacher/index']],
-            ['label' => Yii::t('frontend', 'Lessons'), 'url' => ['/lesson/index']],
-            ['label' => Yii::t('frontend', 'Classes'), 'url' => ['/students-class/index']],
-            ['label' => Yii::t('frontend', 'Subjects'), 'url' => ['/subject/index']],
-            ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index'], 'visible'=>Yii::$app->user->isGuest],
-            ['label' => Yii::t('frontend', 'About'), 'url' => ['/page/view', 'slug'=>'about'], 'visible'=>Yii::$app->user->isGuest],
-            ['label' => Yii::t('frontend', 'Articles'), 'url' => ['/article/index'], 'visible'=>Yii::$app->user->isGuest],
-            ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact'], 'visible'=>Yii::$app->user->isGuest],
-            ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/user/sign-in/signup'], 'visible'=>Yii::$app->user->isGuest],
-            ['label' => Yii::t('frontend', 'Login'), 'url' => ['/user/sign-in/login'], 'visible'=>Yii::$app->user->isGuest],
-            [
-                'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
-                'visible'=>!Yii::$app->user->isGuest,
-                'items'=>[
-                    [
-                        'label' => Yii::t('frontend', 'Settings'),
-                        'url' => ['/user/default/index']
-                    ],
-                    [
-                        'label' => Yii::t('frontend', 'Backend'),
-                        'url' => Yii::getAlias('@backendUrl'),
-                        'visible'=>Yii::$app->user->can('manager')
-                    ],
-                    [
-                        'label' => Yii::t('frontend', 'Logout'),
-                        'url' => ['/user/sign-in/logout'],
-                        'linkOptions' => ['data-method' => 'post']
+<header  id="header" class="mb-50px">
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="#" class="logo"><img src="/img/logo-small.png" alt="" /></a>
+        </div><!--col-sm-3-->
+        <div class="col-sm-6">
+            <div class="header-nav">
+                <?php echo Nav::widget([
+                    'options' => ['class' => ''],
+                    'items' => [
+                        ['label' => Yii::t('frontend', 'Student'), 'url' => ['/student/index']],
+                        ['label' => Yii::t('frontend', 'Teacher'), 'url' => ['/teacher/index']],
+                        ['label' => Yii::t('frontend', 'Lessons'), 'url' => ['/lesson/index']],
+                        ['label' => Yii::t('frontend', 'Classes'), 'url' => ['/students-class/index']],
+                        ['label' => Yii::t('frontend', 'Subjects'), 'url' => ['/subject/index']],
+                        ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index'], 'visible'=>Yii::$app->user->isGuest],
+                        ['label' => Yii::t('frontend', 'About'), 'url' => ['/page/view', 'slug'=>'about'], 'visible'=>Yii::$app->user->isGuest],
+                        ['label' => Yii::t('frontend', 'Articles'), 'url' => ['/article/index'], 'visible'=>Yii::$app->user->isGuest],
+                        ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact'], 'visible'=>Yii::$app->user->isGuest],
+                        ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/user/sign-in/signup'], 'visible'=>Yii::$app->user->isGuest],
+                        ['label' => Yii::t('frontend', 'Login'), 'url' => ['/user/sign-in/login'], 'visible'=>Yii::$app->user->isGuest],
+                        [
+                            'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
+                            'visible'=>!Yii::$app->user->isGuest,
+                            'items'=>[
+                                [
+                                    'label' => Yii::t('frontend', 'Settings'),
+                                    'url' => ['/user/default/index']
+                                ],
+                                [
+                                    'label' => Yii::t('frontend', 'Backend'),
+                                    'url' => Yii::getAlias('@backendUrl'),
+                                    'visible'=>Yii::$app->user->can('manager')
+                                ],
+                                [
+                                    'label' => Yii::t('frontend', 'Logout'),
+                                    'url' => ['/user/sign-in/logout'],
+                                    'linkOptions' => ['data-method' => 'post']
+                                ]
+                            ]
+                        ],
+                        [
+                            'label'=>Yii::t('frontend', 'Language'),
+                            'items'=>array_map(function ($code) {
+                                return [
+                                    'label' => Yii::$app->params['availableLocales'][$code],
+                                    'url' => ['/site/set-locale', 'locale'=>$code],
+                                    'active' => Yii::$app->language === $code
+                                ];
+                            }, array_keys(Yii::$app->params['availableLocales']))
+                        ]
                     ]
-                ]
-            ],
-            [
-                'label'=>Yii::t('frontend', 'Language'),
-                'items'=>array_map(function ($code) {
-                    return [
-                        'label' => Yii::$app->params['availableLocales'][$code],
-                        'url' => ['/site/set-locale', 'locale'=>$code],
-                        'active' => Yii::$app->language === $code
-                    ];
-                }, array_keys(Yii::$app->params['availableLocales']))
-            ]
-        ]
-    ]); ?>
-    <?php NavBar::end(); ?>
+                ]); ?>
+            </div>
+        </div><!--col-sm-6-->
+        <div class="col-sm-3 text-right">
+            <a href="#" class="registr-link">
+                Войти / Регистрация
+            </a><!--registr-link-->
+        </div><!--col-sm-4-->
+    </div><!--row-->
+</header>
 
-    <?php echo $content ?>
-
-</div>
+<?php echo $content ?>
 
 <footer class="footer">
     <div class="container">

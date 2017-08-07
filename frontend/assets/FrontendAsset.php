@@ -31,6 +31,10 @@ class FrontendAsset extends AssetBundle
      */
     public $css = [
         'css/style.css',
+        'css/owl.carousel.css',
+        'css/select2.css',
+        'css/jquery.steps.css',
+        'css/'
     ];
 
     /**
@@ -38,6 +42,16 @@ class FrontendAsset extends AssetBundle
      */
     public $js = [
         'js/app.js',
+        'js/jquery.fancybox.js',
+        'js/jquery.cookie-1.3.1.js',
+        'js/jquery.plugin.js',
+        //'js/jquery.plugin.min.js',
+        'js/jquery.steps.js',
+        //'js/jquery.steps.min.js',
+        'js/jquery-ui.min.js',
+        'js/owl.carousel.min.js',
+        'js/select2.min.js',
+        'js/scripts.js',
     ];
 
     /**
