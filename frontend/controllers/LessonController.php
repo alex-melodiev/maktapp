@@ -2,6 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\models\AcademicYear;
+use common\models\Quarter;
+use common\models\StudentsClass;
+use common\models\Subject;
+use common\models\TeacherSearch;
+use common\models\TimingType;
+use common\models\User;
 use Yii;
 use common\models\Lesson;
 use common\models\LessonSearch;
@@ -65,11 +72,44 @@ class LessonController extends Controller
     {
         $model = new Lesson();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $years = AcademicYear::find()->all();
+
+        // TODO сделать привязку к языку класса
+        $subjects = Subject::find()->all();
+
+        $classes = StudentsClass::findAllBySchool();
+
+        $weeks = Lesson::weeks();
+
+        $days = Lesson::days();
+
+        $quarters = Quarter::find()->all();
+
+        $timingtypes = TimingType::find()->all();
+
+        $teachers = TeacherSearch::getTeachersBySchool();
+
+
+
+
+        $loadedflag = $model->load(Yii::$app->request->post());
+        if($loadedflag){
+            $model->school_id = User::findIdentity(Yii::$app->user->id)->school_id;
+            $model->status = Lesson::PENDING;
+        }
+        if ($loadedflag && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'years' => $years,
+                'subjects' => $subjects,
+                'classes' => $classes,
+                'weeks' => $weeks,
+                'days' => $days,
+                'quarters' => $quarters,
+                'timingtypes' => $timingtypes,
+                'teachers' => $teachers,
             ]);
         }
     }

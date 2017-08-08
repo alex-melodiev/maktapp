@@ -68,7 +68,7 @@ class StudentController extends Controller
 
         $loadedFlag = $model->load(Yii::$app->request->post());
         if($loadedFlag){
-            $model->status = 2;
+            $model->status = User::STATUS_NOT_ACTIVE;
             //TODO Assign Student Role to User
         }
 

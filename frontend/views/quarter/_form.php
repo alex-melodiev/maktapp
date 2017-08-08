@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'start_date')->textInput() ?>
+    <?= $form->field($model, 'start_date')->widget(\yii\jui\DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd']) ?>
 
-    <?= $form->field($model, 'end_date')->textInput() ?>
+    <?= $form->field($model, 'end_date')->widget(\yii\jui\DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd']) ?>
 
-    <?= $form->field($model, 'academic_year_id')->textInput() ?>
+    <?= $form->field($model, 'academic_year_id')->dropDownList(\yii\helpers\ArrayHelper::map($years, 'id', 'start_year')) ?>
 
     <?= $form->field($model, 'number')->textInput() ?>
 

@@ -79,4 +79,13 @@ class TeacherSearch extends User
 
         return $dataProvider;
     }
+
+    public static function getTeachersBySchool($schoolid = null){
+        if(isset($schoolid))
+        {
+            return User::find()->where(['school_id' => $schoolid])->all();
+        } else{
+            return User::find()->where(['school_id' => User::findIdentity(Yii::$app->user->id)->school_id])->all();
+        }
+    }
 }

@@ -12,21 +12,27 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'academic_year_id')->textInput() ?>
+    <? var_dump( $model->getErrors() );?>
 
-    <?= $form->field($model, 'subject_id')->textInput() ?>
+    <?= $form->field($model, 'academic_year_id')->dropDownList(\yii\helpers\ArrayHelper::map($years, 'id', 'start_year')) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'subject_id')->dropDownList(\yii\helpers\ArrayHelper::map($subjects, 'id', 'name')) ?>
 
-    <?= $form->field($model, 'class_id')->textInput() ?>
+    <!-- status -->
 
-    <?= $form->field($model, 'quarter_id')->textInput() ?>
+    <?= $form->field($model, 'class_id')->dropDownList(\yii\helpers\ArrayHelper::map($classes, 'id', 'fullName')) ?>
 
-    <?= $form->field($model, 'timing_id')->textInput() ?>
+    <?= $form->field($model, 'quarter_id')->dropDownList(\yii\helpers\ArrayHelper::map($quarters, 'id', 'number')) ?>
 
-    <?= $form->field($model, 'teacher_id')->textInput() ?>
+    <?= $form->field($model, 'timing_id')->dropDownList(\yii\helpers\ArrayHelper::map($timingtypes, 'id', 'start_time')) ?>
 
-    <?= $form->field($model, 'school_id')->textInput() ?>
+    <?= $form->field($model, 'week_type')->dropDownList(\common\models\Lesson::weeks()) ?>
+
+    <?= $form->field($model, 'day')->dropDownList(\common\models\Lesson::days()) ?>
+
+    <?= $form->field($model, 'teacher_id')->dropDownList(\yii\helpers\ArrayHelper::map($teachers, 'id', 'fullName')) ?>
+
+    <!-- School --->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('frontend', 'Create') : Yii::t('frontend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\AcademicYear;
 use Yii;
 use common\models\Quarter;
 use common\models\QuarterSearch;
@@ -68,8 +69,10 @@ class QuarterController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $years = AcademicYear::find()->all();
             return $this->render('create', [
                 'model' => $model,
+                'years' => $years
             ]);
         }
     }
@@ -87,8 +90,10 @@ class QuarterController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $years = AcademicYear::find()->all();
             return $this->render('update', [
                 'model' => $model,
+                'years' => $years
             ]);
         }
     }

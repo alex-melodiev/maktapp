@@ -296,4 +296,8 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return $this->email;
     }
+
+    public function getfullName(){
+        return stripslashes($this->userProfile->getFullName())!= '' ? $this->userProfile->getFullName() : $this->username ;
+    }
 }

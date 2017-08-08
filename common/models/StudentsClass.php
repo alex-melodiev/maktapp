@@ -57,4 +57,34 @@ class StudentsClass extends \yii\db\ActiveRecord
     {
         return new ClassQuery(get_called_class());
     }
+
+    public static function findAllBySchool($school_id = null){
+        if($school_id){
+            return static::find()
+                ->andWhere(['school_id' => $school_id])
+                ->all();
+        } else {
+            return static::find()
+                ->andWhere(['school_id' => User::findIdentity(Yii::$app->user->id)->school_id])
+                ->all();
+        }
+    }
+
+    public function getfullName()
+    {
+        return $this->number.$this->register;
+    }
+
+    public static function getCuratorClasses($teacher_id = null)
+    {
+        if($teacher_id){
+            return static::find()
+                ->andWhere(['curator_id' => $teacher_id])
+                ->all();
+        } else {
+            return static::find()
+                ->andWhere(['curator_id' => Yii::$app->user->id])
+                ->all();
+        }
+    }
 }

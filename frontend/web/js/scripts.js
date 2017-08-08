@@ -98,7 +98,7 @@ function initialize() {
     });
 
 }
-google.maps.event.addDomListener(window, 'load', initialize);
+
 function checks(){
     $(".checkbox input[type='checkbox'], .radio input[type='radio']").each(function(){
         if($(this).attr('checked')){$(this).closest('label').addClass('checked');}

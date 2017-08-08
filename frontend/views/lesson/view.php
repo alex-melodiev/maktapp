@@ -25,19 +25,64 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'academic_year_id',
-            'subject_id',
-            'status',
-            'class_id',
-            'quarter_id',
-            'timing_id',
-            'teacher_id',
-            'school_id',
-        ],
-    ]) ?>
+    <div class="lesson-navigation mb-30px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="#" class="prev-lesson">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <div class="pl-text">
+                        <span class="p-text">Предыдущий урок</span>
+                        <span class="p-lesson">Русский язык</span>
+                    </div><!--pl-text-->
+                </a><!--prev-lesson-->
+            </div><!--col-sm-3-->
+            <div class="col-sm-6">
+                <div class="lesson-date">
+                    <div class="text-center">
+                        Сегодня: <span>7.04.2017</span>
+                    </div><!--text-center-->
+                </div><!--lesson-date-->
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="next-lesson">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <div class="pl-text">
+                        <span class="p-text">Следующий урок</span>
+                        <span class="p-lesson">Русский язык</span>
+                    </div><!--pl-text-->
+                </a><!--prev-lesson-->
+            </div><!--col-sm-3-->
+        </div><!--row-->
+    </div><!--lesson-navigation-->
+    <div class="text-center">
+        <h1 class="mb-50px">Английский язык</h1>
+    </div><!--text-center-->
+    <div class="row mb-60px">
+        <div class="col-sm-offset-3 col-sm-6">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="white-block">
+                        <div class="wb-info">Класс</div>
+                        <div class="wb-title">5A</div>
+                    </div><!--white-block-->
+                </div><!--col-sm-4-->
+                <div class="col-sm-4">
+                    <div class="white-block">
+                        <div class="wb-info">Время</div>
+                        <div class="wb-title">9:45</div>
+                    </div><!--white-block-->
+                </div><!--col-sm-4-->
+                <div class="col-sm-4">
+                    <div class="white-block">
+                        <div class="wb-info">День</div>
+                        <div class="wb-title">Пон</div>
+                    </div><!--white-block-->
+                </div><!--col-sm-4-->
+            </div><!--row-->
+        </div><!--col-sm-6-->
+    </div><!--row-->
+    <div class="text-center">
+        <a href="#" class="btn btn-green">Начать урок</a>
+    </div><!--text-center-->
 
 </div>

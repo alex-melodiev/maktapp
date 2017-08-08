@@ -65,7 +65,7 @@ class UserProfile extends ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'gender'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
+            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url', 'phone'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
             ['picture', 'safe']
@@ -85,6 +85,7 @@ class UserProfile extends ActiveRecord
             'locale' => Yii::t('common', 'Locale'),
             'picture' => Yii::t('common', 'Picture'),
             'gender' => Yii::t('common', 'Gender'),
+            'phone' => Yii::t('common', 'Phone Number')
         ];
     }
 
@@ -95,6 +96,7 @@ class UserProfile extends ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
 
     /**
      * @return null|string

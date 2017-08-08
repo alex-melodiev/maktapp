@@ -26,6 +26,20 @@ class Lesson extends \yii\db\ActiveRecord
     {
         return 'lesson';
     }
+    const WEEK_EVEN = 1;
+    const WEEK_ODD = 2;
+
+    const MONDAY = 1;
+    const TUESDAY = 2;
+    const WEDNESDAY = 3;
+    const THURSDAY = 4;
+    const FRIDAY = 5;
+    const SATURDAY = 6;
+
+    const PENDING = 0;
+    const CURRENT = 1;
+    const PASSED = 2;
+    const MISSED = 3;
 
     /**
      * @inheritdoc
@@ -33,8 +47,10 @@ class Lesson extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'required'],
+            [['academic_year_id', 'subject_id', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id', 'week_type', 'day'], 'required'],
             [['academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'integer'],
+            [['status', 'school_id'], 'safe'],
+            [['week_type', 'day'], 'string']
         ];
     }
 
@@ -53,6 +69,38 @@ class Lesson extends \yii\db\ActiveRecord
             'timing_id' => Yii::t('app', 'Timing ID'),
             'teacher_id' => Yii::t('app', 'Teacher ID'),
             'school_id' => Yii::t('app', 'School ID'),
+            'week_type' => Yii::t('app', 'Week Type'),
+            'day' => Yii::t('app', 'Day')
+        ];
+    }
+
+    public static function days()
+    {
+        return [
+            self::MONDAY => Yii::t('app', 'Monday'),
+            self::TUESDAY => Yii::t('app', 'Tuesday'),
+            self::WEDNESDAY => Yii::t('app', 'Wednesday'),
+            self::THURSDAY => Yii::t('app', 'Thursday'),
+            self::FRIDAY => Yii::t('app', 'Friday'),
+            self::SATURDAY => Yii::t('app', 'Saturday'),
+        ];
+    }
+
+    public static function weeks()
+    {
+        return[
+            self::WEEK_EVEN => Yii::t('app', 'Even Week'),
+            self::WEEK_ODD => Yii::t('app', 'Odd Week')
+        ];
+    }
+
+    public static function statuses()
+    {
+        return [
+            self::PENDING  => Yii::t('app', 'Pending'),
+            self::CURRENT  => Yii::t('app', 'Current Active'),
+            self::PASSED  => Yii::t('app', 'Passed'),
+            self::MISSED  => Yii::t('app', 'Missed'),
         ];
     }
 }

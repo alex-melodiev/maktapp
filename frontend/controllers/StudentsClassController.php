@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\User;
 use Yii;
 use common\models\StudentsClass;
+use common\models\StudentSearch;
 use common\models\StudentsClassSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,9 +40,10 @@ class StudentsClassController extends Controller
         $searchModel = new StudentsClassSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $curatorClasses = StudentsClass::getCuratorClasses();
+
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'curatorClasses' => $curatorClasses,
         ]);
     }
 
@@ -55,6 +57,30 @@ class StudentsClassController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    /**
+     * Displays Student List for selected Class by Ajax.
+     * @return mixed
+     */
+    public function actionStudents()
+    {
+        if(Yii::$app->request->isAjax){
+
+            $classId = Yii::$app->request->post("class_id");
+            if(isset($classId)){
+
+
+                $students = StudentSearch::find()->
+                andFilterWhere(['class_id' => $classId])->all();
+
+                return $this->renderAjax("partial-index", [
+                        'students' => $students,
+                    ]);
+
+            }
+
+        }
     }
 
     /**

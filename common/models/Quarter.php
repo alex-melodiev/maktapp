@@ -44,7 +44,7 @@ class Quarter extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'start_date' => Yii::t('app', 'Start Date'),
             'end_date' => Yii::t('app', 'End Date'),
-            'academic_year_id' => Yii::t('app', 'Academic Year ID'),
+            'academic_year_id' => Yii::t('app', 'Academic Year'),
             'number' => Yii::t('app', 'Number'),
         ];
     }

@@ -7,25 +7,29 @@ use yii\widgets\Breadcrumbs;
 
 $this->beginContent('@frontend/views/layouts/base.php')
 ?>
-    <div class="container">
+    <section id="content" class="mb-70px">
+        <div class="container">
 
-        <?php echo Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+            <?php
+            echo Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ])
+            ?>
 
-        <?php if(Yii::$app->session->hasFlash('alert')):?>
-            <?php echo \yii\bootstrap\Alert::widget([
-                'body'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
-                'options'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
-            ])?>
-        <?php endif; ?>
+            <?php if(Yii::$app->session->hasFlash('alert')):?>
+                <?php echo \yii\bootstrap\Alert::widget([
+                    'body'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+                    'options'=>ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+                ])?>
+            <?php endif; ?>
 
-        <!-- Example of your ads placing -->
-        <?php echo \common\widgets\DbText::widget([
-            'key' => 'ads-example'
-        ]) ?>
+            <!-- Example of your ads placing -->
+            <?php echo \common\widgets\DbText::widget([
+                'key' => 'ads-example'
+            ]) ?>
 
-        <?php echo $content ?>
+            <?php echo $content ?>
 
-    </div>
+        </div>
+    </section>
 <?php $this->endContent() ?>
