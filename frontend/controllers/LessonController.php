@@ -58,8 +58,11 @@ class LessonController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'prevLesson' => $model->getPrevLesson(),
+            'nextLesson' => $model->getNextLesson(),
         ]);
     }
 
@@ -124,14 +127,59 @@ class LessonController extends Controller
     {
         $model = $this->findModel($id);
 
+        $years = AcademicYear::find()->all();
+
+        // TODO сделать привязку к языку класса
+        $subjects = Subject::find()->all();
+
+        $classes = StudentsClass::findAllBySchool();
+
+        $weeks = Lesson::weeks();
+
+        $days = Lesson::days();
+
+        $quarters = Quarter::find()->all();
+
+        $timingtypes = TimingType::find()->all();
+
+        $teachers = TeacherSearch::getTeachersBySchool();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'years' => $years,
+                'subjects' => $subjects,
+                'classes' => $classes,
+                'weeks' => $weeks,
+                'days' => $days,
+                'quarters' => $quarters,
+                'timingtypes' => $timingtypes,
+                'teachers' => $teachers,
             ]);
         }
     }
+
+    public function actionStartLesson($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = Lesson::CURRENT;
+        $model->save();
+
+        return $this->redirect(['lesson/'.$model->id]);
+    }
+
+    public function actionEndLesson($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = Lesson::PASSED;
+        $model->save();
+
+        return $this->redirect(['lesson/'.$model->getNextLesson()->id]);
+    }
+
+    //TODO create startLesson, endLesson actions
 
     /**
      * Deletes an existing Lesson model.

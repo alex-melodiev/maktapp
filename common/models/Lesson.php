@@ -103,4 +103,51 @@ class Lesson extends \yii\db\ActiveRecord
             self::MISSED  => Yii::t('app', 'Missed'),
         ];
     }
+
+    public function getclassName()
+    {
+        $class = StudentsClass::findOne(['id' => $this->class_id]);
+
+        return $class->getfullName();
+    }
+
+    public function getDay()
+    {
+        $days = self::days();
+
+        return $days[$this->day];
+    }
+
+    public function getSubjectName()
+    {
+        return Subject::find()->where(['id' => $this->subject_id])->one()->name;
+    }
+
+    public function getNextLesson()
+    {
+        return Lesson::find()
+            ->andFilterWhere(['teacher_id' => $this->teacher_id])
+            ->andFilterWhere(['academic_year_id' => $this->academic_year_id])
+            ->andFilterWhere(['status' => self::PENDING])
+            ->andFilterWhere(['quarter_id' => $this->quarter_id])
+            ->andFilterWhere(['week_type' => $this->week_type])
+            ->andFilterWhere(['day' => $this->day])
+            ->andFilterWhere(['>', 'timing_id' , $this->timing_id])
+            ->one();
+        //TODO add sort by timing
+    }
+
+    public function getPrevLesson()
+    {
+        return Lesson::find()
+            ->andFilterWhere(['teacher_id' => $this->teacher_id])
+            ->andFilterWhere(['academic_year_id' => $this->academic_year_id])
+            //->andFilterWhere(['status' => self::PASSED]) //TODO or missed
+            ->andFilterWhere(['quarter_id' => $this->quarter_id])
+            ->andFilterWhere(['week_type' => $this->week_type])
+            ->andFilterWhere(['day' => $this->day])
+            ->andFilterWhere(['<', 'timing_id' , $this->timing_id])
+            ->one();
+        //TODO add sort by timing
+    }
 }
