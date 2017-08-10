@@ -114,13 +114,20 @@ class LessonController extends Controller
 
 
         } else {
-            return $this->render('view', [
-                'model' => $model,
-                'prevLesson' => $model->getPrevLesson(),
-                'nextLesson' => $model->getNextLesson(),
-                'students' => $students,
-                'lessonData' => $lessonData,
-            ]);
+            if($model->status === Lesson::PASSED){
+                return $this->render('over', [
+                    'model' => $model,
+                    'nextlesson' => $model->getNextLesson()
+                ]);
+            } else {
+                return $this->render('view', [
+                    'model' => $model,
+                    'prevLesson' => $model->getPrevLesson(),
+                    'nextLesson' => $model->getNextLesson(),
+                    'students' => $students,
+                    'lessonData' => $lessonData,
+                ]);
+            }
         }
     }
 
