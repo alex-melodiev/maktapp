@@ -833,6 +833,10 @@ ul.list-unstyled li {
   font-size: 20px;
   color: #f0ad43;
 }
+.lesson-page #content {
+  height: 100vh;
+  position: relative;
+}
 .lesson-page #footer {
   position: absolute;
   width: 100%;
@@ -976,4 +980,126 @@ ul.list-unstyled li {
   padding: 12px;
   border: 1px solid #d9e7ed;
   border-bottom: 0;
+}
+.ok-big {
+  margin-top: 50px;
+}
+.lesson-over-title {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  color: #155873;
+}
+.lo-name {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #155873;
+}
+.lo-name span {
+  color: #247ba0;
+}
+.lo-id {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8aabb9;
+}
+.home-work {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.hw-info {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #155873;
+  line-height: 1.8;
+}
+.h-edit {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+}
+.h-edit a {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #36b1e5;
+}
+.h-title {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
+}
+.list-lesson-info {
+  border-bottom: 1px solid #d9e7ed;
+}
+.list-lesson-info .wb-title,
+.list-lesson-info .lo-id {
+  display: inline-block;
+  margin-right: 5px;
+}
+.number-people {
+  font-family: 'SFU', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #8aabb9;
+}
+.number-people span {
+  color: #155873;
+}
+.evaluation-list {
+  text-align: center;
+}
+.evaluation-list .eval {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  margin: 0 5px;
+  line-height: 40px;
+  display: inline-block;
+}
+.evaluation-list .eval:first-child {
+  background: #6a9bd9;
+}
+.evaluation-list .eval:nth-child(2) {
+  background: #ff7343;
+}
+.evaluation-list .eval:nth-child(3) {
+  background: #f2d04a;
+}
+.evaluation-list .eval:nth-child(4) {
+  background: #84d17a;
+}
+.add-button {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #36b1e5;
+}
+.list-lesson-meta {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.list-lesson-meta .row {
+  display: table;
+  width: 100%;
+  /*font-size: 0;*/
+  margin: 0;
+}
+.list-lesson-meta .col-sm-4 {
+  float: none !important;
+  display: inline-block;
 }

@@ -14,9 +14,24 @@ $config = [
             'modules' => [
                 'v1' => 'frontend\modules\api\v1\Module'
             ]
-        ]
+        ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
     ],
     'components' => [
+//        'assetManager' => [
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,
+//                    'basePath' => '@webroot',
+//                    'baseUrl' => '@web',
+//                    'js' => [
+//                        'js/jquery.js',
+//                    ]
+//                ],
+//            ],
+//        ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [

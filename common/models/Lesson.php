@@ -49,8 +49,8 @@ class Lesson extends \yii\db\ActiveRecord
         return [
             [['academic_year_id', 'subject_id', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id', 'week_type', 'day'], 'required'],
             [['academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'integer'],
-            [['status', 'school_id'], 'safe'],
-            [['week_type', 'day'], 'string']
+            [['status', 'school_id', 'homework'], 'safe'],
+            [['week_type', 'day', 'homework'], 'string']
         ];
     }
 
@@ -70,7 +70,8 @@ class Lesson extends \yii\db\ActiveRecord
             'teacher_id' => Yii::t('app', 'Teacher ID'),
             'school_id' => Yii::t('app', 'School ID'),
             'week_type' => Yii::t('app', 'Week Type'),
-            'day' => Yii::t('app', 'Day')
+            'day' => Yii::t('app', 'Day'),
+            'homework' => Yii::t('app', 'Homework')
         ];
     }
 

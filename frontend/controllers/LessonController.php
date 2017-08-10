@@ -3,8 +3,11 @@
 namespace frontend\controllers;
 
 use common\models\AcademicYear;
+use common\models\LessonData;
+use common\models\LessonDataSearch;
 use common\models\Quarter;
 use common\models\StudentsClass;
+use common\models\StudentSearch;
 use common\models\Subject;
 use common\models\TeacherSearch;
 use common\models\TimingType;
@@ -12,9 +15,11 @@ use common\models\User;
 use Yii;
 use common\models\Lesson;
 use common\models\LessonSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * LessonController implements the CRUD actions for Lesson model.
@@ -58,12 +63,65 @@ class LessonController extends Controller
      */
     public function actionView($id)
     {
+        //$lessonData = LessonData::find()->where(['lesson_id' => $id]);
+        $lessonDataSearch = new LessonDataSearch();
+        $lessonData = $lessonDataSearch->search(['lesson_id' => $id]);
         $model = $this->findModel($id);
-        return $this->render('view', [
-            'model' => $model,
-            'prevLesson' => $model->getPrevLesson(),
-            'nextLesson' => $model->getNextLesson(),
-        ]);
+        $students = StudentSearch::find()->where(['class_id' => $model->class_id]);
+
+        // ÐµÑÐ»Ð¸ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð¸Ð´ÐµÑ‚ Ð¾Ñ‚ Editable datagrid
+        if(Yii::$app->request->isAjax){
+
+
+            foreach (Yii::$app->request->post() as $key => $value) {
+                if($model->hasAttribute($key)) $model->setAttribute($key, $value);
+            }
+
+            if( $model->save()){
+                Yii::trace("update lesson", 'trace');
+            }
+
+            // Ð•ÑÐ»Ð¸ Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð² Ð³Ñ€Ð¸Ð´Ðµ
+            if(null !== Yii::$app->request->post("editableKey")) {
+                $datamodel = LessonData::find()->where(['id' => Yii::$app->request->post("editableKey")])->one();
+
+                //$model = $this->findModel($id);
+
+
+                //Yii::trace($datamodel->cla.'qweqwe', 'trace');
+
+                if (null !== Yii::$app->request->post("LessonData")) {
+                    $val = ArrayHelper::toArray(Yii::$app->request->post("LessonData"));
+                    $datamodel->setAttribute(Yii::$app->request->post("editableAttribute"), $val[0][Yii::$app->request->post("editableAttribute")]);
+                }
+
+
+                if ($datamodel->save()) {
+                    // return $this->redirect(['view', 'id' => $model->id]);
+                    $lessonDataSearch = new LessonDataSearch();
+                    $lessonData = $lessonDataSearch->search(['lesson_id' => $id]);
+                    Yii::trace('update model' . Yii::$app->request->post("editableAttribute"), 'trace');
+                }
+            }
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $this->renderAjax('view', [
+                'model' => $model,
+                'prevLesson' => $model->getPrevLesson(),
+                'nextLesson' => $model->getNextLesson(),
+                'students' => $students,
+                'lessonData' => $lessonData,
+            ]);
+
+
+        } else {
+            return $this->render('view', [
+                'model' => $model,
+                'prevLesson' => $model->getPrevLesson(),
+                'nextLesson' => $model->getNextLesson(),
+                'students' => $students,
+                'lessonData' => $lessonData,
+            ]);
+        }
     }
 
     /**
@@ -77,7 +135,7 @@ class LessonController extends Controller
 
         $years = AcademicYear::find()->all();
 
-        // TODO ñäåëàòü ïðèâÿçêó ê ÿçûêó êëàññà
+        // TODO ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð²ÑÐ·ÐºÑƒ Ðº ÑÐ·Ñ‹ÐºÑƒ ÐºÐ»Ð°ÑÑÐ°
         $subjects = Subject::find()->all();
 
         $classes = StudentsClass::findAllBySchool();
@@ -129,7 +187,7 @@ class LessonController extends Controller
 
         $years = AcademicYear::find()->all();
 
-        // TODO ñäåëàòü ïðèâÿçêó ê ÿçûêó êëàññà
+        // TODO ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð²ÑÐ·ÐºÑƒ Ðº ÑÐ·Ñ‹ÐºÑƒ ÐºÐ»Ð°ÑÑÐ°
         $subjects = Subject::find()->all();
 
         $classes = StudentsClass::findAllBySchool();
@@ -161,25 +219,41 @@ class LessonController extends Controller
         }
     }
 
-    public function actionStartLesson($id)
+    public function actionStart($id)
     {
         $model = $this->findModel($id);
         $model->status = Lesson::CURRENT;
         $model->save();
 
+        $students = StudentSearch::find()->where(['class_id' => $model->class_id])->all();
+
+        foreach ($students as $student) {
+            $lessonData = new LessonData();
+            $lessonData->lesson_id = $id;
+            $lessonData->student_id = $student->id;
+            $lessonData->save();
+        }
+
+
         return $this->redirect(['lesson/'.$model->id]);
     }
 
-    public function actionEndLesson($id)
+    public function actionEnd($id)
     {
         $model = $this->findModel($id);
         $model->status = Lesson::PASSED;
-        $model->save();
 
-        return $this->redirect(['lesson/'.$model->getNextLesson()->id]);
+
+        if($model->save()) {
+            //return $this->redirect(['lesson/over/' . $model->getNextLesson()->id]);
+            return $this->render('over', [
+                'model' => $model,
+                'nextlesson' => $model->getNextLesson()
+            ]);
+        } else {
+            return $this->redirect(['lesson/' . $model->id]);
+        }
     }
-
-    //TODO create startLesson, endLesson actions
 
     /**
      * Deletes an existing Lesson model.
