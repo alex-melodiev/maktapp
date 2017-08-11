@@ -3,9 +3,11 @@
 namespace frontend\controllers;
 
 use common\models\StudentsClass;
+use frontend\models\StudentForm;
 use Yii;
 use common\models\User;
 use common\models\StudentSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,34 +66,30 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
-
-        $loadedFlag = $model->load(Yii::$app->request->post());
-        if($loadedFlag){
-            $model->status = User::STATUS_NOT_ACTIVE;
-            //TODO Assign Student Role to User
+        $model = new StudentForm();
+        $model->setScenario('create');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
         }
 
-        if ($loadedFlag && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-
-            $us = User::findCurrentUser();
-            $classes = StudentsClass::find()->where(['school_id' => $us->school_id])->all();
-            $classesArray = [];
-            $i = 0;
-            foreach($classes as $cl){
-                $classesArray[$i]["name"] = $cl->number.$cl->register;
-                $i++;
-            }
-
-
-            return $this->render('create', [
-                'model' => $model,
-                'classes' => $classesArray
-            ]);
+        $us = User::findCurrentUser();
+        $classes = StudentsClass::find()->where(['school_id' => $us->school_id])->all();
+        $classesArray = [];
+        $i = 0;
+        foreach($classes as $cl){
+            $classesArray[$i] = $cl->number.$cl->register;
+            $i++;
         }
+
+
+        return $this->render('create', [
+            'model' => $model,
+            //'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name')
+            'classes' => $classesArray,
+        ]);
     }
+
+
 
     /**
      * Updates an existing User model.
@@ -101,15 +99,26 @@ class StudentController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
+        $model = new StudentForm();
+        $model->setModel($this->findModel($id));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->redirect(['index']);
         }
+
+        $us = User::findCurrentUser();
+        $classes = StudentsClass::find()->where(['school_id' => $us->school_id])->all();
+        $classesArray = [];
+
+        foreach($classes as $cl){
+            $classesArray[$cl->id] = $cl->number.$cl->register;
+
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'classes' => $classesArray
+            //'roles' => ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name')
+        ]);
     }
 
     /**
@@ -120,6 +129,7 @@ class StudentController extends Controller
      */
     public function actionDelete($id)
     {
+        Yii::$app->authManager->revokeAll($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\User */
+/* @var $model frontend\models\StudentForm */
 
 $this->title = Yii::t('frontend', 'Create User');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Users'), 'url' => ['index']];

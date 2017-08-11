@@ -92,7 +92,11 @@ class LessonController extends Controller
 
                 if (null !== Yii::$app->request->post("LessonData")) {
                     $val = ArrayHelper::toArray(Yii::$app->request->post("LessonData"));
-                    $datamodel->setAttribute(Yii::$app->request->post("editableAttribute"), $val[0][Yii::$app->request->post("editableAttribute")]);
+                    foreach ($val as $k => $v) {
+                        $datamodel->setAttribute(Yii::$app->request->post("editableAttribute"), $v[Yii::$app->request->post("editableAttribute")]);
+                    }
+
+                    //$datamodel->setAttribute(Yii::$app->request->post("editableAttribute"), $val[0][Yii::$app->request->post("editableAttribute")]);
                 }
 
 
@@ -234,12 +238,16 @@ class LessonController extends Controller
 
         $students = StudentSearch::find()->where(['class_id' => $model->class_id])->all();
 
+        Yii::trace(count($students), "trace");
+
         foreach ($students as $student) {
             $lessonData = new LessonData();
             $lessonData->lesson_id = $id;
             $lessonData->student_id = $student->id;
-            $lessonData->save();
+            if(!$lessonData->save()) {print_r($lessonData->getErrors()); die();}
         }
+
+        $model->save();
 
 
         return $this->redirect(['lesson/'.$model->id]);
