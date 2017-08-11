@@ -54,8 +54,10 @@ class StudentsClassController extends Controller
      */
     public function actionView($id)
     {
+        $curatorClasses = StudentsClass::getCuratorClasses();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'curatorClasses' => $curatorClasses,
         ]);
     }
 
