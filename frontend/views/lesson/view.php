@@ -12,6 +12,8 @@ use kartik\grid\GridView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Lessons'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model->timing_id])->start_time);
 ?>
 <div class="lesson-view">
 
@@ -97,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="white-block">
                         <div class="wb-info">Время</div>
                         <div
-                            class="wb-title"><?= \common\models\TimingType::findOne(['id' => $model->timing_id])->start_time; //date('H:i', time())    ?></div>
+                            class="wb-title"><?= $time_exploded[0].":".$time_exploded[1] ?></div>
                     </div>
                     <!--white-block-->
                 </div>
@@ -105,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-4">
                     <div class="white-block">
                         <div class="wb-info">День</div>
-                        <div class="wb-title"><?= $model->getDay() ?></div>
+                        <div class="wb-title"><?=Yii::t('common',$model->getDay()) ?></div>
                     </div>
                     <!--white-block-->
                 </div>
