@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('frontend', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <? //TODO students list like this https://marvelapp.com/5gjd15h/screen/28606796  ?>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

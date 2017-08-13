@@ -17,7 +17,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
 ?>
 <div class="lesson-view">
 
-    <h1><?//= Html::encode($this->title) ?></h1>
+    <h1><? // $students = \common\models\StudentSearch::find()->where(['class_id' => $model->class_id])->all(); var_dump(count($students)); ?></h1>
 
     <p>
         <?= Html::a(Yii::t('frontend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -130,6 +130,8 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                 <div class="col-sm-4">
                     <div class="wb-title"><?= $model->getclassName() ?></div>
                     <div class="lo-id">ID: <?= $model->id ?></div>
+                    <p><?//= $prevLesson->homework; ?></p>
+                    <? //TODO get true homework of last lesson ?>
                 </div><!--col-sm-4-->
                 <div class="col-sm-4">
                     <div class="lesson-date mb-10px">

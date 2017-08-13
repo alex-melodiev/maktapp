@@ -833,6 +833,10 @@ ul.list-unstyled li {
   font-size: 20px;
   color: #f0ad43;
 }
+.lesson-page #content {
+  height: 100vh;
+  position: relative;
+}
 .lesson-page #footer {
   position: absolute;
   width: 100%;
@@ -929,4 +933,230 @@ ul.list-unstyled li {
   top: 5px;
   right: 3px;
   color: #fb4840;
+}
+.with-border {
+  border-top: 1px solid #d9e7ed;
+  padding-top: 50px;
+}
+.rt-header {
+  border: 1px solid #d9e7ed;
+  background: #eef6f9;
+  padding: 15px 0;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 0;
+}
+.rt-title {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #155873;
+  line-height: 20px;
+}
+.rt-date {
+  font-family: 'SFU', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #5c8596;
+}
+.rt-table {
+  border: 1px solid #d9e7ed;
+  border-radius: 0 0 8px 8px;
+  border-top: 0;
+}
+.rt-table table {
+  width: 100%;
+}
+.rt-table tr td:first-child {
+  border-left: 0;
+}
+.rt-table tr td:last-child {
+  border-right: 0;
+}
+.rt-table tr td {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
+  padding: 12px;
+  border: 1px solid #d9e7ed;
+  border-bottom: 0;
+}
+.ok-big {
+  margin-top: 50px;
+}
+.lesson-over-title {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  color: #155873;
+}
+.lo-name {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #155873;
+}
+.lo-name span {
+  color: #247ba0;
+}
+.lo-id {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8aabb9;
+}
+.home-work {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.hw-info {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #155873;
+  line-height: 1.8;
+}
+.h-edit {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+}
+.h-edit a {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #36b1e5;
+}
+.h-title {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
+}
+.list-lesson-info {
+  border-bottom: 1px solid #d9e7ed;
+}
+.list-lesson-info .wb-title,
+.list-lesson-info .lo-id {
+  display: inline-block;
+  margin-right: 5px;
+}
+.number-people {
+  font-family: 'SFU', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #8aabb9;
+}
+.number-people span {
+  color: #155873;
+}
+.evaluation-list {
+  text-align: center;
+}
+.evaluation-list .eval {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  margin: 0 5px;
+  line-height: 40px;
+  display: inline-block;
+}
+.evaluation-list .eval:first-child {
+  background: #6a9bd9;
+}
+.evaluation-list .eval:nth-child(2) {
+  background: #ff7343;
+}
+.evaluation-list .eval:nth-child(3) {
+  background: #f2d04a;
+}
+.evaluation-list .eval:nth-child(4) {
+  background: #84d17a;
+}
+.add-button {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #36b1e5;
+}
+.list-lesson-meta {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.list-lesson-meta .row {
+  display: table;
+  width: 100%;
+  font-size: 0;
+  margin: 0;
+}
+.list-lesson-meta .col-sm-4 {
+  float: none !important;
+  display: inline-block;
+}
+.setting-page .nav-tabs {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  border-bottom: 0;
+  margin-bottom: -5px;
+}
+.setting-page .nav-tabs li {
+  margin: 0;
+  padding-left: 0;
+  display: inline-block;
+}
+.setting-page .nav-tabs li.active a {
+  background: #36b1e5;
+  color: #fff;
+}
+.setting-page .nav-tabs li:first-child a {
+  border-radius: 5px 0 0 0;
+}
+.setting-page .nav-tabs li:last-child a {
+  border-radius: 0 5px 0 0;
+}
+.setting-page .nav-tabs li a {
+  display: inline-block;
+  margin-right: 0;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #155873;
+  background: #eef6f9;
+  padding: 15px 60px;
+  border: 1px solid #d9e7ed;
+  border-radius: 0;
+  border-bottom: 0 !important;
+  text-transform: uppercase;
+}
+.setting-tab {
+  text-align: center;
+  border-bottom: 1px solid #d9e7ed;
+}
+.tic-image {
+  border-radius: 5px;
+}
+.info-table table tr td {
+  padding-bottom: 15px;
+  color: #155873;
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+.info-table table tr td a {
+  color: #36b1e5;
+}
+.info-table table tr td:first-child {
+  color: #8aabb9;
+  padding-right: 20px;
 }

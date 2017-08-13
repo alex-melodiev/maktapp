@@ -32,8 +32,8 @@ class LessonData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_id', 'lesson_id', 'presence'], 'required'],
-            [['homework_mark', 'homework_note', 'additional_mark', 'additional_note'], 'safe'],
+            [['student_id', 'lesson_id'], 'required'],
+            [['homework_mark', 'homework_note', 'additional_mark', 'additional_note', 'presence'], 'safe'],
             [['student_id', 'lesson_id', 'homework_mark', 'additional_mark'], 'integer'],
             [['homework_note', 'additional_note'], 'string'],
             [['presence'], 'boolean']
