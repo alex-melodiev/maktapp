@@ -134,7 +134,7 @@ $(".lesson-mark").click(function () {
         type: "POST",
         data: {
             "lesson_data_id": $(this).attr("lesson-data-id"),
-            "lesson_attr": "homework_mark",
+            "lesson_attr": $(this).attr("mark-type") == 'homework'? "homework_mark" : 'additional_mark',
             "lesson_attr_val": selectedMark
         },
         success: function (data) {

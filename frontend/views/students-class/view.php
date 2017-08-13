@@ -156,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         continue;
                                     } ?>
                                     <? $dt = $les->getLessonData($stud->id); ?>
-                                    <td id="lesson-data-<?= $dt->id ?>" lesson-data-id="<?= $dt->id ?>"
+                                    <td id="lesson-data-<?= $dt->id ?>" mark-type="homework" lesson-data-id="<?= $dt->id ?>"
                                         class="lesson-mark"> <?
 
                                         // TODO update additional mark

@@ -67,7 +67,10 @@ class LessonController extends Controller
     {
         //$lessonData = LessonData::find()->where(['lesson_id' => $id]);
         $lessonDataSearch = new LessonDataSearch();
-        $lessonData = $lessonDataSearch->search(['lesson_id' => $id]);
+        //[$search->formName()=>['att3'=>3]]
+
+        $lessonData = $lessonDataSearch->search([$lessonDataSearch->formName() => ['lesson_id' => $id]]);
+
         $model = $this->findModel($id);
         $students = StudentSearch::find()->where(['class_id' => $model->class_id]);
 
@@ -271,6 +274,44 @@ class LessonController extends Controller
         }
     }
 
+    public function actionUpdateDatetime($id)
+    {
+        $model = $this->findModel($id);
+
+        $years = AcademicYear::find()->all();
+
+        // TODO сделать привязку к языку класса
+        $subjects = Subject::find()->all();
+
+        $classes = StudentsClass::findAllBySchool();
+
+        $weeks = Lesson::weeks();
+
+        $days = Lesson::days();
+
+        $quarters = Quarter::find()->all();
+
+        $timingtypes = TimingType::find()->all();
+
+        $teachers = TeacherSearch::getTeachersBySchool();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['schedule']);
+        } else {
+            return $this->render('update-datetime', [
+                'model' => $model,
+                'years' => $years,
+                'subjects' => $subjects,
+                'classes' => $classes,
+                'weeks' => $weeks,
+                'days' => $days,
+                'quarters' => $quarters,
+                'timingtypes' => $timingtypes,
+                'teachers' => $teachers,
+            ]);
+        }
+    }
+
     public function actionStart($id)
     {
         $model = $this->findModel($id);
@@ -324,14 +365,21 @@ class LessonController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionSchedule($teacher_id = 0)
+    public function actionSchedule($monday_date = 0)
     {
+        //$monday_date = Yii::$app->request->get('monday_date');
         //$lessons = Lesson::find()->where(["teacher_id" => Yii::$app->user->id, ''])
+
+        if($monday_date === 0) {
+            $monday_date = time();
+        }
+
         $timings = TimingType::find()->all();
         $days = Lesson::days();
         return $this->render('schedule',[
             'timings' => $timings,
-            'days' => $days
+            'days' => $days,
+            'monday_date' => $monday_date
         ]);
 
     }

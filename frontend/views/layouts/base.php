@@ -18,10 +18,10 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                 <?php echo Nav::widget([
                     'options' => ['class' => ''],
                     'items' => [
-                        ['label' => Yii::t('frontend', 'Students'), 'url' => ['/student/index']],
-                        ['label' => Yii::t('frontend', 'Schedule'), 'url' => ['/lesson/schedule']],
-                        ['label' => Yii::t('frontend', 'Lessons'), 'url' => ['/lesson/index']],
                         ['label' => Yii::t('frontend', 'Journal'), 'url' => ['/students-class/index']],
+                        ['label' => Yii::t('frontend', 'Schedule'), 'url' => ['/lesson/schedule']],
+                        ['label' => Yii::t('frontend', 'Students'), 'url' => ['/student/index']],
+                        //['label' => Yii::t('frontend', 'Lessons'), 'url' => ['/lesson/index']],
                         ['label' => Yii::t('frontend', 'Subjects'), 'url' => ['/subject/index']],
                         ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index'], 'visible'=>Yii::$app->user->isGuest],
                         ['label' => Yii::t('frontend', 'About'), 'url' => ['/page/view', 'slug'=>'about'], 'visible'=>Yii::$app->user->isGuest],
@@ -49,22 +49,22 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 //                                ]
 //                            ]
 //                        ],
-                        [
-                            'label'=>Yii::t('frontend', 'Language'),
-                            'items'=>array_map(function ($code) {
-                                return [
-                                    'label' => Yii::$app->params['availableLocales'][$code],
-                                    'url' => ['/site/set-locale', 'locale'=>$code],
-                                    'active' => Yii::$app->language === $code
-                                ];
-                            }, array_keys(Yii::$app->params['availableLocales']))
-                        ]
+//                        [
+//                            'label'=>Yii::t('frontend', 'Language'),
+//                            'items'=>array_map(function ($code) {
+//                                return [
+//                                    'label' => Yii::$app->params['availableLocales'][$code],
+//                                    'url' => ['/site/set-locale', 'locale'=>$code],
+//                                    'active' => Yii::$app->language === $code
+//                                ];
+//                            }, array_keys(Yii::$app->params['availableLocales']))
+//                        ]
                     ]
                 ]); ?>
             </div>
         </div><!--col-sm-6-->
         <div class="col-sm-3 text-right">
-            <a href="'/user/default/index'" class="registr-link">
+            <a href="<?= \yii\helpers\Url::to(['/user/default/index']) ?>" class="registr-link">
                 <? if(!Yii::$app->user->isGuest) {
                     echo Yii::$app->user->identity->getPublicIdentity();
     }
