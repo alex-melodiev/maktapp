@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\LessonData;
@@ -88,6 +88,27 @@ class LessonDataController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionUpdateValue()
+    {
+        if(Yii::$app->request->isAjax){
+            $lessonData = $this->findModel(Yii::$app->request->post('lesson_data_id'));
+            $attribute = Yii::$app->request->post('lesson_attr');
+            $value = Yii::$app->request->post('lesson_attr_val');
+
+
+            $lessonData->setAttribute($attribute, $value);
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if($lessonData->save()){
+                return json_encode(true);
+            } else {
+                return json_encode($lessonData->getErrors());
+            }
+
+        }
+
     }
 
     /**

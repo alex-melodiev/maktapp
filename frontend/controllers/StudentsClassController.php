@@ -2,11 +2,15 @@
 
 namespace frontend\controllers;
 
+use common\models\Lesson;
+use common\models\LessonData;
+use common\models\Subject;
 use common\models\User;
 use Yii;
 use common\models\StudentsClass;
 use common\models\StudentSearch;
 use common\models\StudentsClassSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,14 +56,52 @@ class StudentsClassController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $subj_id = null)
     {
         $curatorClasses = StudentsClass::getCuratorClasses();
+
+        //$lessonsData = LessonData::find()->where(['class_id' => $id])->all();
+        $subject_ids = Lesson::find()->select('subject_id')->where(['class_id' => $id, 'parent_lesson_id' => null, 'teacher_id' => Yii::$app->user->id])->all();
+
+        // говнокодище, простите
+        $ids = [];
+        foreach ($subject_ids as $subject) {
+            $ids[] = $subject->subject_id;
+        }
+
+        $subjects = [];
+        if(count($ids) > 0) {
+            $subjects = Subject::find()->where('id IN (' . implode(',', $ids) . ')')->all();
+        }
+
+        $lessons = [];
+        $students = [];
+        //$lessonsData = [];
+        if($subj_id){
+            $lessons = Lesson::find()
+                ->andWhere(['class_id' => $id])
+                ->andWhere(['teacher_id' => Yii::$app->user->id])
+                ->andWhere(['subject_id' => $subj_id])
+                //->andWhere(['<>', 'parent_lesson_id', null])
+                ->all();
+
+            $students = StudentSearch::find()->where(['class_id' => $id])->orderBy("username")->all();
+        }
+
+
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'curatorClasses' => $curatorClasses,
+            //'lessonData' => $lessonsData
+            //'subject_ids' => ArrayHelper::map($subject_ids, 'subject_id', 'id')
+            'subjects' => $subjects,
+            'lessons' => $lessons,
+            'students' => $students,
         ]);
     }
+
+
 
     /**
      * Displays Student List for selected Class by Ajax.
@@ -84,6 +126,8 @@ class StudentsClassController extends Controller
 
         }
     }
+
+
 
     /**
      * Creates a new StudentsClass model.

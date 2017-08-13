@@ -1160,3 +1160,54 @@ ul.list-unstyled li {
   color: #8aabb9;
   padding-right: 20px;
 }
+.s-number {
+  width: 52px;
+  height: 52px;
+  background: #c9dce3;
+  text-align: center;
+  line-height: 52px;
+  border-radius: 50%;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: #fff;
+}
+.as-name {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #155873;
+  text-align: right;
+}
+.as-form .row {
+  display: table;
+  width: 100%;
+}
+.as-form .col-sm-2,
+.as-form .col-sm-3,
+.as-form .col-sm-5 {
+  float: none !important;
+  display: inline-block;
+}
+.add-student {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d9e7ed;
+  margin-bottom: 40px;
+}
+.add-student .row {
+  display: table;
+  font-size: 0;
+  width: 100%;
+}
+.add-student .col-sm-1,
+.add-student .col-sm-9 {
+  display: inline-block;
+  float: none !important;
+  vertical-align: middle;
+}
+.sb {
+  margin-left: 34px;
+}
+.ok-big img {
+  margin: 0 auto;
+}

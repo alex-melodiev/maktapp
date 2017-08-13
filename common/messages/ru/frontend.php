@@ -18,6 +18,11 @@
  */
 return [
     'Activation email' => '',
+    'Journal' => 'Журнал',
+    'Students' => 'Ученики',
+    'Schedule' => 'Расписание',
+    'Lessons'  => 'Уроки',
+    'Subjects'  => 'Предметы',
     'This email has already been taken.' => '',
     'Your account has been successfully activated.' => '',
     'Your account has been successfully created. Check your email for further instructions.' => '',

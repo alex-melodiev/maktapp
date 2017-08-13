@@ -48,7 +48,9 @@ class LessonController extends Controller
     public function actionIndex()
     {
         $searchModel = new LessonSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -107,6 +109,8 @@ class LessonController extends Controller
                     Yii::trace('update model' . Yii::$app->request->post("editableAttribute"), 'trace');
                 }
             }
+
+
             Yii::$app->response->format = Response::FORMAT_JSON;
             return $this->renderAjax('view', [
                 'model' => $model,
@@ -165,6 +169,7 @@ class LessonController extends Controller
 
 
         $loadedflag = $model->load(Yii::$app->request->post());
+       // $model->lesson_date = strtotime(Yii::$app->request->post('lesson_date'));
         if($loadedflag){
             $model->school_id = User::findIdentity(Yii::$app->user->id)->school_id;
             $model->status = Lesson::PENDING;
@@ -174,14 +179,38 @@ class LessonController extends Controller
 
             Yii::trace(count($students), "trace");
 
-            foreach ($students as $student) {
-                $lessonData = new LessonData();
-                $lessonData->lesson_id = $model->id;
-                $lessonData->student_id = $student->id;
-                if(!$lessonData->save()) {print_r($lessonData->getErrors()); die();}
-            }
+
         }
         if ($loadedflag && $model->save()) {
+
+            $hours_count = $model->academic_hours;
+
+            for($i = 0; $i< $hours_count; $i++){
+                $lesson = new Lesson();
+                $lesson->load(Yii::$app->request->post());
+
+                $lesson->academic_hours = 1;
+                $lesson->parent_lesson_id = $model->id;
+                $date = strtotime($model->lesson_date);
+                $date = strtotime("+".($i * 7)." day", $date);
+                $lesson->lesson_date = date('Y-m-d',$date);
+                $lesson->school_id = User::findIdentity(Yii::$app->user->id)->school_id;
+                $lesson->status = Lesson::PENDING;
+                if(!$lesson->save()) { print_r($lesson->getErrors()); die(); }
+
+
+
+                foreach ($students as $student) {
+
+                    $lessonData = new LessonData();
+                    $lessonData->lesson_id = $lesson->id;
+                    $lessonData->student_id = $student->id;
+                    if(!$lessonData->save()) {print_r($lessonData->getErrors()); print_r($date); die();}
+                }
+            }
+
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -295,6 +324,18 @@ class LessonController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSchedule($teacher_id = 0)
+    {
+        //$lessons = Lesson::find()->where(["teacher_id" => Yii::$app->user->id, ''])
+        $timings = TimingType::find()->all();
+        $days = Lesson::days();
+        return $this->render('schedule',[
+            'timings' => $timings,
+            'days' => $days
+        ]);
+
+    }
+
     /**
      * Finds the Lesson model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -310,4 +351,6 @@ class LessonController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
 }

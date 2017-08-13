@@ -17,6 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    "Monday" => "Пон",
+    "Tuesday" => "Вт",
+    "Wednesday" => "Ср",
+    "Thursday" => "Чт",
+    "Friday" => "Пт",
+    "Saturday" => "Сб",
+    "Sunday" => "Вс",
     'API access token' => '',
     'Email' => '',
     'Expire At' => '',

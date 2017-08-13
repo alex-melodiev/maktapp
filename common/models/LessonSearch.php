@@ -18,7 +18,7 @@ class LessonSearch extends Lesson
     public function rules()
     {
         return [
-            [['id', 'academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'integer'],
+            [['id','parent_lesson_id', 'academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'integer'],
         ];
     }
 
@@ -48,6 +48,8 @@ class LessonSearch extends Lesson
             'query' => $query,
         ]);
 
+        //var_dump($params); die();
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -59,6 +61,7 @@ class LessonSearch extends Lesson
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'parent_lesson_id' => $this->parent_lesson_id,
             'academic_year_id' => $this->academic_year_id,
             'subject_id' => $this->subject_id,
             'status' => $this->status,

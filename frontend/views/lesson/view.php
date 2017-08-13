@@ -12,41 +12,37 @@ use kartik\grid\GridView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Lessons'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model->timing_id])->start_time);
 ?>
 <div class="lesson-view">
 
     <h1><? // $students = \common\models\StudentSearch::find()->where(['class_id' => $model->class_id])->all(); var_dump(count($students)); ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('frontend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('frontend', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('frontend', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?//= Html::a(Yii::t('frontend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?//= Html::a(Yii::t('frontend', 'Delete'), ['delete', 'id' => $model->id], [
+//            'class' => 'btn btn-danger',
+//            'data' => [
+//                'confirm' => Yii::t('frontend', 'Are you sure you want to delete this item?'),
+//                'method' => 'post',
+//            ],
+//        ]) ?>
     </p>
     <? if ($model->status == \common\models\Lesson::PENDING): ?>
 
     <div class="lesson-navigation mb-30px">
         <div class="row">
-            <div class="col-sm-3">
-                <a href="<?php
-                if (isset($prevLesson)) {
-                    echo \yii\helpers\Url::to(['lesson/' . $prevLesson->id]);
-                }
-                ?>" class="prev-lesson">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+            <div class="col-sm-3"><? if (isset($prevLesson)) { ?>
+                    <a href="<? echo \yii\helpers\Url::to(['lesson/' . $prevLesson->id]);?>" class="next-lesson">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
 
-                    <div class="pl-text">
-                        <span class="p-text">Предыдущий урок</span>
-                        <span class="p-lesson"><? if (isset($prevLesson)) {
-                                echo $prevLesson->getSubjectName();
-                            } else echo '-'; ?></span>
-                    </div>
-                    <!--pl-text-->
-                </a><!--prev-lesson-->
+                        <div class="pl-text">
+                            <span class="p-text">Предыдущий урок</span>
+                            <span class="p-lesson"><?  echo $prevLesson->getSubjectName(); ?></span>
+                        </div>
+                        <!--pl-text-->
+                    </a><!--prev-lesson-->
+                <? } ?>
             </div>
             <!--col-sm-3-->
             <div class="col-sm-6">
@@ -58,20 +54,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <!--lesson-date-->
             </div>
-            <div class="col-sm-3">
-                <a href="<? if (isset($nextLesson)) {
-                    echo \yii\helpers\Url::to(['lesson/' . $nextLesson->id]);
-                } ?>" class="next-lesson">
+            <div class="col-sm-3"><? if (isset($nextLesson)) { ?>
+                <a href="<? echo \yii\helpers\Url::to(['lesson/' . $nextLesson->id]);?>" class="next-lesson">
                     <span class="glyphicon glyphicon-chevron-right"></span>
 
                     <div class="pl-text">
                         <span class="p-text">Следующий урок</span>
-                        <span class="p-lesson"><? if (isset($nextLesson)) {
-                                echo $nextLesson->getSubjectName();
-                            } else echo '-'; ?></span>
+                        <span class="p-lesson"><?  echo $nextLesson->getSubjectName(); ?></span>
                     </div>
                     <!--pl-text-->
                 </a><!--prev-lesson-->
+                <? } ?>
             </div>
             <!--col-sm-3-->
         </div>
@@ -97,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="white-block">
                         <div class="wb-info">Время</div>
                         <div
-                            class="wb-title"><?= \common\models\TimingType::findOne(['id' => $model->timing_id])->start_time; //date('H:i', time())    ?></div>
+                            class="wb-title"><?= $time_exploded[0].":".$time_exploded[1] ?></div>
                     </div>
                     <!--white-block-->
                 </div>
@@ -105,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-4">
                     <div class="white-block">
                         <div class="wb-info">День</div>
-                        <div class="wb-title"><?= $model->getDay() ?></div>
+                        <div class="wb-title"><?=Yii::t('common',$model->getDay()) ?></div>
                     </div>
                     <!--white-block-->
                 </div>

@@ -105,3 +105,76 @@ function checks(){
         else {$(this).closest('label').removeClass('checked');}
     });
 }
+
+
+var selectedMark = 0;
+var selectedPresence = 0;
+
+$(".marks .eval").click(function(){
+    selectedMark = $(this).attr("data-val");
+    console.log(selectedMark);
+});
+
+$(".presence .eval").click(function(){
+    selectedPresence = $(this).attr("data-val");
+    console.log(selectedPresence);
+});
+
+$(".lesson-mark").click(function () {
+    if(selectedMark > 0){
+        $(this).attr('data-val', selectedMark);
+        $(this).text(selectedMark);
+    } else {
+        $(this).attr('data-val', '');
+        $(this).text('');
+    }
+    console.log('start');
+    $.ajax({
+        url: '/lesson-data/update-value',
+        type: "POST",
+        data: {
+            "lesson_data_id": $(this).attr("lesson-data-id"),
+            "lesson_attr": "homework_mark",
+            "lesson_attr_val": selectedMark
+        },
+        success: function (data) {
+            //alert(data);
+           console.log("mark updated");
+            console.log(data);
+
+        },
+        error: function(error){
+            console.log("error");
+            console.log(error);
+        }
+    });
+
+});
+
+$(".lesson-presence").click(function () {
+
+    $(this).attr('data-val', selectedPresence);
+    $(this).text(selectedPresence == 0 ? '-' : '+');
+
+    console.log('start');
+    $.ajax({
+        url: '/lesson-data/update-value',
+        type: "POST",
+        data: {
+            "lesson_data_id": $(this).attr("lesson-data-id"),
+            "lesson_attr": "presence",
+            "lesson_attr_val": selectedPresence
+        },
+        success: function (data) {
+            //alert(data);
+            console.log("presence updated");
+            console.log(data);
+
+        },
+        error: function(error){
+            console.log("error");
+            console.log(error);
+        }
+    });
+
+});
