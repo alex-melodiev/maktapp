@@ -60,10 +60,10 @@ echo \kartik\date\DatePicker::widget([
                         $lesson = \common\models\Lesson::find()->where([ 'lesson_date' => date( 'Y-m-d', strtotime( strtolower($day).' this week', $monday_date ) ), 'timing_id' => $timing->id,  'teacher_id' => Yii::$app->user->id])->andWhere(['not', ['parent_lesson_id' => null]])->one(); ?>
                         <td><?
                         if($lesson){
-                            echo "<a href=". \yii\helpers\Url::to(['lesson/'.$lesson->id]).">";
+                            echo "<a class=".blue-link." href=". \yii\helpers\Url::to(['lesson/'.$lesson->id]).">";
                             echo $lesson->getSubjectName().'. '.$lesson->getclassName();
                         ?> </a>
-                           &nbsp; <a href="<?= \yii\helpers\Url::to(['lesson/update-datetime/?id='.$lesson->id]) ?>"><span class="schedule-edit glyphicon glyphicon-edit"></span></a>
+                           &nbsp; <a href="<?= \yii\helpers\Url::to(['lesson/update-datetime/?id='.$lesson->id]) ?>" class="pull-right"><span class="schedule-edit glyphicon glyphicon-edit"></span></a>
                            <? } ?>
                         </td>
                     <? endforeach; ?>
