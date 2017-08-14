@@ -181,7 +181,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                 'class'=>'add-button',
                                 'rows'=>5,
                                 'style'=>'width:400px',
-                                'placeholder'=>'Ввести домашнее задание...'
+                                'placeholder'=>Yii::t('frontend','Ввести домашнее задание...')
                             ],
                             'afterInput' => Html::hiddenInput('homework',$model->homework)
                         ]);
