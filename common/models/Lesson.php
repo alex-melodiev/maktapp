@@ -47,10 +47,11 @@ class Lesson extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['academic_year_id', 'subject_id', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id', 'week_type', 'day'], 'required'],
-            [['academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id'], 'integer'],
-            [['status', 'school_id', 'homework'], 'safe'],
-            [['week_type', 'day', 'homework'], 'string']
+            [['academic_year_id', 'subject_id', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id', 'week_type', 'day', 'academic_hours'], 'required'],
+            [['academic_year_id', 'subject_id', 'status', 'class_id', 'quarter_id', 'timing_id', 'teacher_id', 'school_id', 'parent_lesson_id', 'academic_hours'], 'integer'],
+            [['status', 'school_id', 'homework', 'parent_id', 'lesson_date'], 'safe'],
+            [['week_type', 'day', 'homework'], 'string'],
+           // [['lesson_date'], 'date'],
         ];
     }
 
@@ -61,6 +62,9 @@ class Lesson extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'parent_lesson_id' => Yii::t('app', 'Parent Lesson'),
+            'lesson_date' => Yii::t('app', 'Lesson Date'),
+            'academic_hours' => Yii::t('app', 'Academic Hours'),
             'academic_year_id' => Yii::t('app', 'Academic Year ID'),
             'subject_id' => Yii::t('app', 'Subject ID'),
             'status' => Yii::t('app', 'Status'),
@@ -150,5 +154,17 @@ class Lesson extends \yii\db\ActiveRecord
             ->andFilterWhere(['<', 'timing_id' , $this->timing_id])
             ->one();
         //TODO add sort by timing
+    }
+
+    public function getLessonData($student_id = null)
+    {
+        if($student_id)
+        {
+            return LessonData::find()->andFilterWhere(['lesson_id' => $this->id])->andFilterWhere(['student_id' => $student_id])->one();
+        }
+        else
+        {
+            return LessonData::find()->andFilterWhere(['lesson_id' => $this->id])->all();
+        }
     }
 }
