@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Lesson */
@@ -17,6 +18,37 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'academic_year_id')->dropDownList(\yii\helpers\ArrayHelper::map($years, 'id', 'start_year')) ?>
 
     <?= $form->field($model, 'subject_id')->dropDownList(\yii\helpers\ArrayHelper::map($subjects, 'id', 'name')) ?>
+
+    <?= $form->field($model, 'academic_hours')->input('integer') ?>
+    <p>
+        Один урок один раз в неделю. Соответственно, количество академ. часов нужно указывать с учетом одного урока в неделю.
+        Например, если на урок выделено 20 часов в четверти по 2 урока в неделю, то на один урок при создании нужно указать 20 / 2 = 10 часов.
+        На другой день недели нужно создать еще один урок.
+    </p>
+
+    <?= $form->field($model, 'lesson_date')->widget(DatePicker::className(),[
+        //'value' => date('Y-m-d', strtotime('+2 days')),
+        'options' => ['placeholder' => 'Выберите дату первого урока ...'],
+        'convertFormat' => true,
+        'pluginOptions' => [
+            'format' => 'yyyy-MM-dd',
+            'todayHighlight' => true
+        ]
+    ] ) ?>
+    <?
+//    echo '<label>Дата первого урока</label>';
+//    echo DatePicker::widget([
+//        'model' => $model,
+//        'name' => 'lesson_date',
+//        //'value' => date('Y-m-d', strtotime('+2 days')),
+//        'options' => ['placeholder' => 'Выберите дату первого урока ...'],
+//        'pluginOptions' => [
+//            'format' => 'yyyy-mm-dd',
+//            'todayHighlight' => true
+//        ]
+//    ]);
+    ?>
+
 
     <!-- status -->
 

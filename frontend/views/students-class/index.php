@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\StudentsClassSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,150 +21,78 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 
+    <div class="text-center">
+
+        <h1 class="mb-50px">Ваши классы</h1>
+
+    </div>
+    <!--text-center-->
+
+    <div class="teacher-settings-container">
 
 
-        <div class="text-center mb-45px">
-            <div class="teacher-setting-links">
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a  data-toggle="pill"  class="ruk-link" href="#curatortab"><?= Yii::t('frontend', 'Curator') ?></a></li>
-                    <li role="presentation"><a  data-toggle="pill" href="#teachertab" class="prep-link"><?= Yii::t('frontend', 'Teacher') ?></a></li>
-                </ul>
-            </div><!--teacher-sitting-links-->
-        </div><!--text-center-->
+        <div class="row">
 
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade active in" id="curatortab">
-                        <div class="text-center">
+            <div class="col-sm-2">
 
-                            <h1 class="mb-50px">Ваши классы</h1>
+                <h4></h4>
 
-                        </div><!--text-center-->
+            </div>
+            <!--col-sm-2-->
+            <? foreach ($curatorClasses as $class): ?>
 
-                        <div class="teacher-settings-container">
+                <div class="col-sm-1">
 
+                    <div class="class-block">
 
-                            <div class="row">
+                        <a href="<?= \yii\helpers\Url::to(['students-class/view/?id=' . $class->id]) ?>"
+                           onclick="//getStudentsForClass(<? //= $class->id ?>)" class="class-link">
 
-                                <div class="col-sm-2">
+                            <span><?= $class->number . $class->register ?></span>
 
-                                    <h4></h4>
+                        </a><!--class-link-->
 
-                                </div><!--col-sm-2-->
-                                <? foreach($curatorClasses as $class): ?>
+                        <a href="#" class="class-close"><span class="glyphicon glyphicon-remove"></span></a>
 
-                                <div class="col-sm-1">
-
-                                    <div class="class-block">
-
-                                        <a href="#" onclick="getStudentsForClass(<?= $class->id ?>)" class="class-link">
-
-                                            <span><?= $class->number.$class->register ?></span>
-
-                                        </a><!--class-link-->
-
-                                        <a href="#" class="class-close"><span class="glyphicon glyphicon-remove"></span></a>
-
-                                    </div><!--class-block-->
-
-                                </div><!--col-sm-1-->
-                                <? endforeach; ?>
-
-                            </div><!--row-->
-
-                        </div><!--teacher-settings-->
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="teachertab">
-                        <div class="text-center">
+                    <!--class-block-->
 
-                            <h1 class="mb-50px">Ваши классы</h1>
+                </div><!--col-sm-1-->
+            <? endforeach; ?>
 
-                        </div><!--text-center-->
+        </div>
+        <!--row-->
 
-                        <div class="teacher-settings-container">
+    </div>
+    <!--teacher-settings-->
 
 
-                            <div class="row">
-
-                                <div class="col-sm-2">
-
-                                    <h4></h4>
-
-                                </div><!--col-sm-2-->
-
-                                <div class="col-sm-1">
-
-                                    <div class="class-block">
-
-                                        <a href="#" class="class-link">
-
-                                            <span>5А</span>
-
-                                        </a><!--class-link-->
-
-                                        <a href="#" class="class-close"><span class="glyphicon glyphicon-remove"></span></a>
-
-                                    </div><!--class-block-->
-
-                                </div><!--col-sm-1-->
-
-                            </div><!--row-->
-
-                        </div><!--teacher-settings-->
-
-                        <div class="teacher-settings-container">
-
-                            <div class="row">
-
-                                <div class="col-sm-2">
-
-                                    <h4>Английский язык</h4>
-
-                                </div><!--col-sm-2-->
-
-                                <div class="col-sm-1">
-
-                                    <div class="class-block">
-
-                                        <a href="#" class="class-link">
-
-                                            <span>5А</span>
-
-                                        </a><!--class-link-->
-
-                                        <a href="#" class="class-close"><span class="glyphicon glyphicon-remove"></span></a>
-
-                                    </div><!--class-block-->
-
-                                </div><!--col-sm-1-->
-
-                            </div><!--row-->
-
-                        </div><!--teacher-settings-->
-                    </div>
-                </div>
+</div>
 
 <div id="classdata">
 
 </div>
 
 
-    <script type="text/javascript">
-        function getStudentsForClass(classid){
-            console.log("start");
-            $.ajax({
-                url: '/students-class/students',
-                type: 'POST',
-                data: {
-                    "class_id": classid,
-                },
-                success: function (data){
-                    $("#classdata").html(data);
-                },
-                error:  function (data){
-                    $("#classdata").html(data);
-                },
-            });
+<script type="text/javascript">
+    function getStudentsForClass(classid) {
+        console.log("start");
+        $.ajax({
+            url: '/students-class/students',
+            type: 'POST',
+            data: {
+                "class_id": classid,
+            },
+            success: function (data) {
+                $("#classdata").html(data);
+            },
+            error: function (data) {
+                $("#classdata").html(data);
+            }
+        });
 
-            console.log("end");
-        }
-    </script>
+        console.log("end");
+
+        return false;
+    }
+</script>

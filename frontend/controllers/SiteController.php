@@ -32,7 +32,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        //return $this->render('index');
+        return $this->redirect(['/lesson/schedule?monday_date=1504551600']);
     }
 
     public function actionContact()

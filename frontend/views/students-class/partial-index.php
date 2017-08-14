@@ -30,7 +30,7 @@ use yii\helpers\Html;
                     <td><?= $student->userProfile->firstname.' '.$student->userProfile->lastname ?></td>
                     <td>Имя Фамилия</td>
                     <td><?= $student->userProfile->phone ?></td>
-                    <td>Активен</td>
+                    <td><?= $student->status ?></td>
                     <td></td>
                     <td>x</td>
                 </tr>
