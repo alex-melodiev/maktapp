@@ -42,7 +42,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                     <span class="glyphicon glyphicon-chevron-left"></span>
 
                     <div class="pl-text">
-                        <span class="p-text">Предыдущий урок</span>
+                        <span class="p-text"><?=Yii::t("frontend","Предыдущий урок")?></span>
                         <span class="p-lesson"><? if (isset($prevLesson)) {
                                 echo $prevLesson->getSubjectName();
                             } else echo '-'; ?></span>
@@ -54,7 +54,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
             <div class="col-sm-6">
                 <div class="lesson-date">
                     <div class="text-center">
-                        Сегодня: <span><?= date("d.m.Y") ?></span>
+                        <?=Yii::t("frontend","Сегодня:")?> <span><?= date("d.m.Y") ?></span>
                     </div>
                     <!--text-center-->
                 </div>
@@ -65,9 +65,8 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                     echo \yii\helpers\Url::to(['lesson/' . $nextLesson->id]);
                 } ?>" class="next-lesson">
                     <span class="glyphicon glyphicon-chevron-right"></span>
-
                     <div class="pl-text">
-                        <span class="p-text">Следующий урок</span>
+                        <span class="p-text"><?=Yii::t("frontend","Следующий урок")?></span>
                         <span class="p-lesson"><? if (isset($nextLesson)) {
                                 echo $nextLesson->getSubjectName();
                             } else echo '-'; ?></span>
@@ -89,7 +88,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
             <div class="row">
                 <div class="col-sm-4">
                     <div class="white-block">
-                        <div class="wb-info">Класс</div>
+                        <div class="wb-info"><?=Yii::t("frontend","Класс")?></div>
                         <div class="wb-title"><?= $model->getclassName() ?></div>
                     </div>
                     <!--white-block-->
@@ -97,7 +96,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                 <!--col-sm-4-->
                 <div class="col-sm-4">
                     <div class="white-block">
-                        <div class="wb-info">Время</div>
+                        <div class="wb-info"><?=Yii::t("frontend","Время")?></div>
                         <div
                             class="wb-title"><?= $time_exploded[0].":".$time_exploded[1] ?></div>
                     </div>
@@ -106,7 +105,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                 <!--col-sm-4-->
                 <div class="col-sm-4">
                     <div class="white-block">
-                        <div class="wb-info">День</div>
+                        <div class="wb-info"><?=Yii::t("frontend","День")?></div>
                         <div class="wb-title"><?=Yii::t('common',$model->getDay()) ?></div>
                     </div>
                     <!--white-block-->
@@ -119,7 +118,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
     </div>
     <!--row-->
     <div class="text-center">
-            <a href="<?= \yii\helpers\Url::to(['lesson/start/' . $model->id]) ?>" class="btn btn-green">Начать урок</a>
+            <a href="<?= \yii\helpers\Url::to(['lesson/start/' . $model->id]) ?>" class="btn btn-green"><?=Yii::t("frontend","Начать урок")?></a>
         </div>
         <!--text-center-->
         <? elseif ($model->status == \common\models\Lesson::CURRENT): ?>
@@ -136,7 +135,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                 <div class="col-sm-4">
                     <div class="lesson-date mb-10px">
                         <div class="text-center">
-                            Сегодня: <span><?= date("d.m.Y") ?></span>
+                            <?=Yii::t("frontend","Сегодня:")?> <span><?= date("d.m.Y") ?></span>
                         </div><!--text-center-->
                     </div>
                     <div class="text-center">
@@ -144,14 +143,14 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                     </div><!--text-center-->
                 </div><!--col-sm-4-->
                 <div class="col-sm-4">
-                    <a href="<?= \yii\helpers\Url::to(['lesson/end/' . $model->id]) ?>" class="btn btn-default pull-right">Завершить урок</a>
+                    <a href="<?= \yii\helpers\Url::to(['lesson/end/' . $model->id]) ?>" class="btn btn-default pull-right"><?=Yii::t("frontend","Завершить урок")?></a>
                 </div><!--col-sm-4-->
             </div><!--row-->
         </div><!--list-lesson-info-->
         <div class="list-lesson-meta mb-20px">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="number-people">Кол-во учеников: <span><?= count($students) ?></span></div>
+                    <div class="number-people"><?=Yii::t("frontend","Кол-во учеников:")?> <span><?= count($students) ?></span></div>
                 </div><!--col-sm-4-->
                 <div class="col-sm-4">
                     <div class="evaluation-list">
@@ -172,7 +171,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                 'templateBefore' => \kartik\editable\Editable::INLINE_BEFORE_2,
                                 'templateAfter' =>  \kartik\editable\Editable::INLINE_AFTER_2
                             ],
-                            'valueIfNull' => '<span class="glyphicon glyphicon-plus-sign"></span> Назначить домашнее задание',
+                            'valueIfNull' => "<span class='glyphicon glyphicon-plus-sign'></span> {Yii::t('frontend','Назначить домашнее задание')}",
                             'inputType' => \kartik\editable\Editable::INPUT_TEXTAREA,
                             'model' => $model,
                             'value' => $model->homework,
