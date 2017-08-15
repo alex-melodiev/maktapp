@@ -68,7 +68,7 @@ class UserProfile extends ActiveRecord
             [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url', 'phone'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            ['picture', 'datebirth', 'safe']
+            ['picture', 'safe']
         ];
     }
 

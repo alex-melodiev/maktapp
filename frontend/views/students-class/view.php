@@ -15,6 +15,9 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Students Classes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+
+echo date("H:m:s");
 ?>
 <div class="setting-page">
 <div class="students-class-view">

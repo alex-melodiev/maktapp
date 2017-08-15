@@ -30,6 +30,8 @@ $this->title = Yii::t('frontend', 'User Settings')
 
     <?php echo $form->field($model->getModel('profile'), 'lastname')->textInput(['maxlength' => 255]) ?>
 
+    <?php echo $form->field($model->getModel('profile'), 'datebirth')->textInput(['maxlength' => 255]) ?>
+
     <?php echo $form->field($model->getModel('profile'), 'locale')->dropDownlist(Yii::$app->params['availableLocales']) ?>
 
     <?php echo $form->field($model->getModel('profile'), 'gender')->dropDownlist([

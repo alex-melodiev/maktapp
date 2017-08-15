@@ -167,4 +167,18 @@ class Lesson extends \yii\db\ActiveRecord
             return LessonData::find()->andFilterWhere(['lesson_id' => $this->id])->all();
         }
     }
+
+    public static function getCurrentLesson()
+    {
+//        return Lesson::find()
+//            ->andFilterWhere(['teacher_id' => Yii::$app->user->id])
+//            ->andFilterWhere(['lesson_date' => date('Y-m-d')])
+//            //->andFilterWhere(['status' => self::PASSED]) //TODO or missed
+//
+//            ->andFilterWhere(['timing_id' => TimingType::find()
+//                ->andWhere(['<=','start_time', date("H:m:s")])
+//                ->andWhere(['<=','end_time', date("H:m:s")])
+//                ->one()->id
+//            ])->one();
+    }
 }

@@ -477,3 +477,10 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
 
 </div>
 
+
+<style>
+
+    td.lesson-mark:hover {
+        border: gray dotted 2px;
+    }
+</style>
