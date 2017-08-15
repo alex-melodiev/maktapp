@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\web\User;
 
 /**
  * This is the model class for table "class".
@@ -66,7 +65,7 @@ class StudentsClass extends \yii\db\ActiveRecord
                 ->all();
         } else {
             return static::find()
-                ->andWhere(['school_id' => User::findIdentity(Yii::$app->user->id)->school_id])
+                ->andWhere(['school_id' => \common\models\User::findIdentity(Yii::$app->user->id)->school_id])
                 ->all();
         }
     }
