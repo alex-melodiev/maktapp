@@ -1,7 +1,7 @@
 /*EDIT NEW*/
 .input-group.date{
     text-align: center;
-    width: 100%;
+    display: inline-block;
 }
 .input-group.date .input-group-addon.kv-date-calendar{
     background: transparent !important;
@@ -26,4 +26,10 @@
 }
 .blue-link{
     font-weight: 700;
+}
+.lesson-label{
+    text-align: center;
+}
+.lesson-label .control-label{
+    display: inline-block;
 }

@@ -2,7 +2,7 @@
 /* @var $day */
 
 use yii\helpers\Html;
-
+echo '<div class="lesson-label">';
 echo '<label class="control-label">Сегодня: </label>';
 echo \kartik\date\DatePicker::widget([
     'name' => 'monday_date',
@@ -20,7 +20,7 @@ echo \kartik\date\DatePicker::widget([
          window.location = window.location.protocol + '//' + window.location.hostname + window.location.pathname+ '?monday_date='+ Math.floor(d.getTime() / 1000); }",
     ]
 ]);
-
+echo '</div>';
 ?>
 
 <div class="raspisanie-table mb-30px">
