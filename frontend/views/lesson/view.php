@@ -171,7 +171,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                 'templateBefore' => \kartik\editable\Editable::INLINE_BEFORE_2,
                                 'templateAfter' =>  \kartik\editable\Editable::INLINE_AFTER_2
                             ],
-                            'valueIfNull' => "<span class='glyphicon glyphicon-plus-sign'></span> {Yii::t('frontend','Назначить домашнее задание')}",
+                            'valueIfNull' => "<span class='glyphicon glyphicon-plus-sign'></span> ".Yii::t('frontend','Назначить домашнее задание'),
                             'inputType' => \kartik\editable\Editable::INPUT_TEXTAREA,
                             'model' => $model,
                             'value' => $model->homework,
