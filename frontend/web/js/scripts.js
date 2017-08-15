@@ -112,6 +112,9 @@ var selectedPresence = 0;
 
 $(".marks .eval").click(function(){
     selectedMark = $(this).attr("data-val");
+    $(".marks .eval").removeClass('active');
+    $(".marks .eval").parent().addClass('active-marks');
+    $(this).addClass('active');
     console.log(selectedMark);
 });
 
