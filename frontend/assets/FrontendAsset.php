@@ -42,6 +42,7 @@ class FrontendAsset extends AssetBundle
      */
     public $js = [
         'js/app.js',
+        'js/bootstrap.js',
         'js/jquery.fancybox.js',
         'js/jquery.cookie-1.3.1.js',
         'js/jquery.plugin.js',

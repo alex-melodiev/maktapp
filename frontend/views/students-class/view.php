@@ -91,15 +91,15 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <div class="setting-tab mb-60px">
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Успеваемость</a></li>
-        <li><a data-toggle="tab" href="#menu1">Посещаемость</a></li>
-        <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>-->
-    </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#menu1">Успеваемость</a></li>
+            <li><a data-toggle="tab" href="#menu2">Посещаемость</a></li>
+            <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>-->
+        </ul>
     </div>
 
     <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
+        <div id="menu1" class="tab-pane fade in active">
 
             <!-- Успеваемость -->
             <br><br>
@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div id="menu1" class="tab-pane fade">
+        <div id="menu2" class="tab-pane fade">
             <!-- Посещаемость -->
             <br><br>
 
@@ -261,11 +261,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
 
-            <p>Some content in menu 2.</p>
-        </div>
     </div>
 
     <? endif; ?>
