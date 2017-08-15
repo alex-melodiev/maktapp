@@ -34,6 +34,7 @@ class FrontendAsset extends AssetBundle
         'css/owl.carousel.css',
         'css/select2.css',
         'css/jquery.steps.css',
+        'css/custom.css',
     ];
 
     /**
