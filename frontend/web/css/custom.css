@@ -7,3 +7,11 @@
     border:0 !important;
     background: transparent !important;
 }
+.header-nav ul li a:hover, .header-nav ul li a:focus{
+    background: transparent!important;
+    text-decoration: underline;
+    color:yellow !important;
+}
+.registr-link:hover, .registr-link:focus{
+    color:yellow !important;
+}
