@@ -16,6 +16,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Students Classes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="setting-page">
 <div class="students-class-view">
 
     <h1><?//= Html::encode($this->title) ?></h1>
@@ -270,6 +271,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <? endif; ?>
 
 
+</div>
 </div>
 <style>
     .class-block.active a {
