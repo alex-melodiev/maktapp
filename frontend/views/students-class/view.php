@@ -16,6 +16,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Students Classes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="setting-page">
 <div class="students-class-view">
 
     <h1><?//= Html::encode($this->title) ?></h1>
@@ -89,12 +90,13 @@ $this->params['breadcrumbs'][] = $this->title;
         if(count($lessons) > 0 && count($students) > 0) :
     ?>
 
-
+    <div class="setting-tab mb-60px">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Успеваемость</a></li>
         <li><a data-toggle="tab" href="#menu1">Посещаемость</a></li>
         <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>-->
     </ul>
+    </div>
 
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
@@ -269,6 +271,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <? endif; ?>
 
 
+</div>
 </div>
 <style>
     .class-block.active a {

@@ -1,0 +1,9 @@
+/*EDIT NEW*/
+.input-group.date .input-group-addon.kv-date-calendar{
+    background: transparent !important;
+    border:0 !important;
+}
+.input-group.date .krajee-datepicker{
+    border:0 !important;
+    background: transparent !important;
+}
