@@ -1104,12 +1104,223 @@ ul.list-unstyled li {
   float: none !important;
   display: inline-block;
 }
-/*EDIT NEW*/
-.input-group.date .input-group-addon.kv-date-calendar{
-  background: transparent !important;
-  border:0 !important;
+.setting-page .nav-tabs {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  border-bottom: 0;
+  margin-bottom: -5px;
 }
-.input-group.date .krajee-datepicker{
-  border:0 !important;
-  background: transparent !important;
+.setting-page .nav-tabs li {
+  margin: 0;
+  padding-left: 0;
+  display: inline-block;
+}
+.setting-page .nav-tabs li.active a {
+  background: #36b1e5;
+  color: #fff;
+}
+.setting-page .nav-tabs li:first-child a {
+  border-radius: 5px 0 0 0;
+}
+.setting-page .nav-tabs li:last-child a {
+  border-radius: 0 5px 0 0;
+}
+.setting-page .nav-tabs li a {
+  display: inline-block;
+  margin-right: 0;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #155873;
+  background: #eef6f9;
+  padding: 15px 60px;
+  border: 1px solid #d9e7ed;
+  border-radius: 0;
+  border-bottom: 0 !important;
+  text-transform: uppercase;
+}
+.setting-tab {
+  text-align: center;
+  border-bottom: 1px solid #d9e7ed;
+}
+.tic-image {
+  border-radius: 5px;
+}
+.info-table table tr td {
+  padding-bottom: 15px;
+  color: #155873;
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+.info-table table tr td a {
+  color: #36b1e5;
+}
+.info-table table tr td:first-child {
+  color: #8aabb9;
+  padding-right: 20px;
+}
+.s-number {
+  width: 52px;
+  height: 52px;
+  background: #c9dce3;
+  text-align: center;
+  line-height: 52px;
+  border-radius: 50%;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: #fff;
+}
+.as-name {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #155873;
+  text-align: right;
+}
+.as-form .row {
+  display: table;
+  width: 100%;
+}
+.as-form .col-sm-2,
+.as-form .col-sm-3,
+.as-form .col-sm-5 {
+  float: none !important;
+  display: inline-block;
+}
+.add-student {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d9e7ed;
+  margin-bottom: 40px;
+}
+.add-student .row {
+  display: table;
+  font-size: 0;
+  width: 100%;
+}
+.add-student .col-sm-1,
+.add-student .col-sm-9 {
+  display: inline-block;
+  float: none !important;
+  vertical-align: middle;
+}
+.sb {
+  margin-left: 34px;
+}
+.ok-big img {
+  margin: 0 auto;
+}
+.setting-add-table {
+  border-top: 1px solid #d9e7ed;
+  position: relative;
+  padding: 40px 0;
+}
+.setting-add-table:last-child {
+  border-bottom: 1px solid #d9e7ed;
+}
+.setting-add-table .as-name {
+  text-align: left;
+}
+.setting-add-table .label {
+  display: inline-block;
+  margin-bottom: 7px;
+}
+.setting-add-table table {
+  width: 100%;
+}
+.setting-add-table table tr {
+  vertical-align: bottom;
+}
+.setting-add-table table tr td {
+  padding-bottom: 15px;
+}
+.setting-add-table table tr td:first-child {
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ff1654;
+  vertical-align: bottom;
+}
+.label {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #6b95a6;
+  padding: 0;
+}
+.sa-text {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #246580;
+}
+.btn-silver {
+  background: #a5bdc7;
+  font-family: 'SFU', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 0;
+  text-transform: uppercase;
+  display: inline-block;
+  color: #fff;
+  padding: 14px 30px 16px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.button-block {
+  margin: 50px 0;
+}
+.delete-link {
+  color: #c9dce3;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.job {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8aabb9;
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+}
+.job:before {
+  content: '.';
+  position: absolute;
+  top: -4px;
+  left: -9px;
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8aabb9;
+}
+.e-name {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #36b1e5;
+}
+.event-container {
+  padding: 35px 0;
+  border-top: 1px solid #d9e7ed;
+}
+.event-container:last-child {
+  border-bottom: 1px solid #d9e7ed;
+}
+.event-container h3 {
+  margin-bottom: 10px;
+}
+.event-calendar {
+  font-family: 'SFU', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5c8596;
 }
