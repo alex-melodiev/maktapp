@@ -300,4 +300,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function getfullName(){
         return stripslashes($this->userProfile->getFullName())!= '' ? $this->userProfile->getFullName() : $this->username ;
     }
+
+    public function getdatebirth(){
+        return stripslashes($this->userProfile->datebirth)!= '' ? $this->userProfile->datebirth : '' ;
+    }
 }

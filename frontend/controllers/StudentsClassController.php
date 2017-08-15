@@ -69,6 +69,24 @@ class StudentsClassController extends Controller
     }
 
     /**
+     * Lists all StudentsClass models.
+     * @return mixed
+     */
+    public function actionClassesIndex()
+    {
+        $searchModel = new StudentsClassSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $curatorClasses = StudentsClass::getCuratorClasses();
+        $studyClasses = StudentsClass::getStudyClasses();
+
+        return $this->render('classes-index', [
+            'curatorClasses' => $curatorClasses,
+            'studyClasses' => $studyClasses,
+        ]);
+    }
+
+    /**
      * Displays a single StudentsClass model.
      * @param integer $id
      * @return mixed
@@ -121,6 +139,32 @@ class StudentsClassController extends Controller
 
 
     /**
+     * Displays a single StudentsClass model.
+     * @param integer $id
+     * @return mixed
+     */
+//    public function actionClasses($id)
+//    {
+//        if(Yii::$app->request->isAjax){
+//
+//            $classId = Yii::$app->request->post("class_id");
+//            if(isset($classId)){
+//
+//
+//                $students = StudentSearch::find()->
+//                andFilterWhere(['class_id' => $classId])->all();
+//
+//                return $this->renderAjax("partial-index", [
+//                    'students' => $students,
+//                ]);
+//
+//            }
+//
+//        }
+//    }
+
+
+    /**
      * Displays Student List for selected Class by Ajax.
      * @return mixed
      */
@@ -135,7 +179,7 @@ class StudentsClassController extends Controller
                 $students = StudentSearch::find()->
                 andFilterWhere(['class_id' => $classId])->all();
 
-                return $this->renderAjax("partial-index", [
+                return $this->renderAjax("classes", [
                         'students' => $students,
                     ]);
 

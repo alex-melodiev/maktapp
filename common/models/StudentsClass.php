@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\User;
 
 /**
  * This is the model class for table "class".
@@ -84,6 +85,22 @@ class StudentsClass extends \yii\db\ActiveRecord
         } else {
             return static::find()
                 ->andWhere(['curator_id' => Yii::$app->user->id])
+                ->all();
+        }
+    }
+
+    public static function getStudyClasses($teacher_id = null)
+    {
+        if($teacher_id){
+            return static::find()
+                ->where(['school_id' => \common\models\User::findIdentity(Yii::$app->user->id)->school_id])
+                ->join("LEFT JOIN", "lessons", "lesson.teacher_id=",$teacher_id)
+                ->all();
+        } else {
+            return static::find()
+                ->leftJoin("lesson", "lesson.teacher_id=".Yii::$app->user->id)
+                ->andWhere(['class.school_id' => \common\models\User::findIdentity(Yii::$app->user->id)->school_id])
+                ->andWhere(['<>' ,'class.curator_id', Yii::$app->user->id])
                 ->all();
         }
     }

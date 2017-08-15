@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <!--text-center-->
 
-    <div class="teacher-settings-container">
+    <div class="teacher-settings-container ">
 
 
         <div class="row">

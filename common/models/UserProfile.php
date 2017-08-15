@@ -68,7 +68,7 @@ class UserProfile extends ActiveRecord
             [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url', 'phone'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            ['picture', 'safe']
+            ['picture', 'datebirth', 'safe']
         ];
     }
 
@@ -85,7 +85,8 @@ class UserProfile extends ActiveRecord
             'locale' => Yii::t('common', 'Locale'),
             'picture' => Yii::t('common', 'Picture'),
             'gender' => Yii::t('common', 'Gender'),
-            'phone' => Yii::t('common', 'Phone Number')
+            'phone' => Yii::t('common', 'Phone Number'),
+            'datebirth' => Yii::t('common', 'Birth Date')
         ];
     }
 
@@ -108,6 +109,7 @@ class UserProfile extends ActiveRecord
         }
         return null;
     }
+
 
     /**
      * @param null $default
