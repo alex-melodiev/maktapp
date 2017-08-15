@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\ContactForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
@@ -26,7 +27,23 @@ class SiteController extends Controller
             'set-locale'=>[
                 'class'=>'common\actions\SetLocaleAction',
                 'locales'=>array_keys(Yii::$app->params['availableLocales'])
-            ]
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // deny all POST requests
+//                    [
+//                        'allow' => false,
+//                        'actions' => ['create', 'update']
+//                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['teacher'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
         ];
     }
 

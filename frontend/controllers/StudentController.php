@@ -7,6 +7,7 @@ use frontend\models\StudentForm;
 use Yii;
 use common\models\User;
 use common\models\StudentSearch;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,6 +28,22 @@ class StudentController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // deny all POST requests
+//                    [
+//                        'allow' => false,
+//                        'actions' => ['create', 'update']
+//                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['teacher'],
+                    ],
+                    // everything else is denied
                 ],
             ],
         ];

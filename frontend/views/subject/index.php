@@ -9,6 +9,11 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('frontend', 'Subjects');
 $this->params['breadcrumbs'][] = $this->title;
+//
+//$auth = Yii::$app->authManager;
+//print_r($auth->getRoles());
+
+
 ?>
 <div class="subject-index">
 

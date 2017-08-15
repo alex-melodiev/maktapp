@@ -6,6 +6,7 @@ use common\models\Article;
 use common\models\ArticleAttachment;
 use frontend\models\search\ArticleSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -14,6 +15,27 @@ use yii\web\NotFoundHttpException;
  */
 class ArticleController extends Controller
 {
+
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['teacher'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
+        ];
+    }
+
+
     /**
      * @return string
      */

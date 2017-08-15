@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\filters\AccessControl;
 
 /**
  * This is the model class for table "academic_year".
@@ -30,6 +31,28 @@ class AcademicYear extends \yii\db\ActiveRecord
         return [
             [['start_year', 'end_year', 'active'], 'required'],
             [['start_year', 'end_year', 'active'], 'integer'],
+        ];
+    }
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // deny all POST requests
+                    [
+                        'allow' => false,
+                        'actions' => ['create', 'update']
+                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['teacher'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
         ];
     }
 

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Subject;
 use common\models\SubjectSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,8 +27,26 @@ class SubjectController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // deny all POST requests
+                    [
+                        'allow' => false,
+                        'actions' => ['create', 'update']
+                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['teacher'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
         ];
     }
+
 
     /**
      * Lists all Subject models.

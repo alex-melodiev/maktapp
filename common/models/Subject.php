@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\filters\AccessControl;
 
 /**
  * This is the model class for table "subject".
@@ -28,6 +29,16 @@ class Subject extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 50],
+//            [
+//                'allow' => false,
+//                'roles' => ['*']
+//                //'actions' => ['create', 'update']
+//            ],
+//            [
+//                'allow' => true,
+//                'actions' => ['index'],
+//                'roles' => ['teacher']
+//            ]
         ];
     }
 

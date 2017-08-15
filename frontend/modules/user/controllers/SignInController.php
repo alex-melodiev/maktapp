@@ -88,6 +88,7 @@ class SignInController extends \yii\web\Controller
      */
     public function actionLogin()
     {
+        $this->layout = "empty";
         $model = new LoginForm();
         if (Yii::$app->request->isAjax) {
             $model->load($_POST);
