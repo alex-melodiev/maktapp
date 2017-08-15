@@ -40,7 +40,7 @@
     color:#155873;
 }
 .predmets{
-    padding: 15px;
+    padding: 15px 0 0 0;
     border-radius: 5px;
     background: #eef6f9;
 }
@@ -50,4 +50,9 @@
 .predmets ul li a{
     font-size: 15px;
     color:#36b1e5;
+}
+.teacher-settings-container .row .col-sm-3{
+    display: inline-block;
+    vertical-align: middle;
+    float: none !important;
 }
