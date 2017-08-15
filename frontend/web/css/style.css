@@ -1069,10 +1069,9 @@ ul.list-unstyled li {
   text-align: center;
   margin: 0 5px;
   line-height: 40px;
+  display: inline-block;
 }
-.evaluation-list.active-marks .eval{
-  background: #bfd3da;
-}
+
 .evaluation-list .eval:first-child:hover,.evaluation-list .eval:first-child:focus, .evaluation-list .eval:first-child, .evaluation-list .eval.active:first-child   {
   background: #6a9bd9;
 }
@@ -1084,6 +1083,9 @@ ul.list-unstyled li {
 }
 .evaluation-list .eval:nth-child(4):hover,.evaluation-list .eval:nth-child(4):focus, .evaluation-list .eval:nth-child(4), .evaluation-list .eval.active:nth-child(4)  {
   background: #84d17a;
+}
+.evaluation-list.active-marks .eval{
+  background: #bfd3da;
 }
 .add-button {
   font-family: 'SFU', sans-serif;
