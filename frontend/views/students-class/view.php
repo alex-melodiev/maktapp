@@ -72,18 +72,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div><!--col-sm-1-->
             <? endforeach; ?>
-
+            <div class="col-sm-3">
+                <div class="predmets">
+                    <ul>
+                    <? foreach ($subjects as $subj): ?>
+                        <li><?= $subj->name ?> <a href="/students-class/view/?id=<?= $model->id ?>&subj_id=<?= $subj->id ?>">
+                                Журнал</a></li>
+                    <? endforeach; ?>
+                </ul>
+                </div>
+            </div><!--col-sm-3-->
         </div>
         <!--row-->
 
     </div>
     <!--teacher-settings-->
-    <ul>
-        <? foreach ($subjects as $subj): ?>
-            <li><?= $subj->name ?> <a href="/students-class/view/?id=<?= $model->id ?>&subj_id=<?= $subj->id ?>">
-                    Журнал</a></li>
-        <? endforeach; ?>
-    </ul>
+
     <?
     //var_dump($lessons);
     //var_dump($students);
