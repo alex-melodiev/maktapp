@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="tab-content">
         <div id="menu1" class="tab-pane fade in active text-center">
-            <div class="setting-page">
+            <div class="teacher-settings-container no-p">
                 <div class="row">
 
                     <!--col-sm-2-->
