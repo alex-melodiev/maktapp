@@ -56,3 +56,12 @@
     vertical-align: middle;
     float: none !important;
 }
+.no-p{
+    border-top: 0 !important;
+    padding-top: 0 !important;
+}
+.overy{
+    height: 500px;
+    position: relative;
+    overflow-y: scroll;
+}

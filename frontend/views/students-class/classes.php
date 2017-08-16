@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-sm-3" ></div>
 <div class="col-sm-6" >
 
-    <div class="raspisanie-table mb-30px">
+    <div class="raspisanie-table mb-30px overy">
         <div class="rt-table">
             <table>
                 <thead class="rt-header"><tr>
