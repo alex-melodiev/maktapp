@@ -18,7 +18,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'lesson_date')->widget(DatePicker::className(),[
         //'value' => date('Y-m-d', strtotime('+2 days')),
-        'options' => ['placeholder' => 'Выберите дату первого урока ...'],
+        'options' => ['placeholder' => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ...'],
         'convertFormat' => true,
         'pluginOptions' => [
             'format' => 'yyyy-MM-dd',
@@ -26,12 +26,12 @@ use kartik\date\DatePicker;
         ]
     ] ) ?>
     <?
-    //    echo '<label>Дата первого урока</label>';
+    //    echo '<label>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</label>';
     //    echo DatePicker::widget([
     //        'model' => $model,
     //        'name' => 'lesson_date',
     //        //'value' => date('Y-m-d', strtotime('+2 days')),
-    //        'options' => ['placeholder' => 'Выберите дату первого урока ...'],
+    //        'options' => ['placeholder' => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ...'],
     //        'pluginOptions' => [
     //            'format' => 'yyyy-mm-dd',
     //            'todayHighlight' => true

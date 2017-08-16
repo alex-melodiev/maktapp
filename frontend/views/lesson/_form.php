@@ -21,14 +21,14 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'academic_hours')->input('integer') ?>
     <p>
-        <?=Yii::t("frontend","Один урок один раз в неделю. Соответственно, количество академ. часов нужно указывать с учетом одного урока в неделю.
-        Например, если на урок выделено 20 часов в четверти по 2 урока в неделю, то на один урок при создании нужно указать 20 / 2 = 10 часов.
-        На другой день недели нужно создать еще один урок.")?>
+        <?=Yii::t("frontend","One lesson per week. So count of academic hours must be set following this rule.
+        For example, if course must last 20 hours per quarter, for one lesson you must set 20/2 = 10 hours.
+        For other day of week you must create one more lesson.")?>
     </p>
 
     <?= $form->field($model, 'lesson_date')->widget(DatePicker::className(),[
         //'value' => date('Y-m-d', strtotime('+2 days')),
-        'options' => ['placeholder' => Yii::t("frontend",'Выберите дату первого урока ...')],
+        'options' => ['placeholder' => Yii::t("frontend",'Select date of first lesson...')],
         'convertFormat' => true,
         'pluginOptions' => [
             'format' => 'yyyy-MM-dd',

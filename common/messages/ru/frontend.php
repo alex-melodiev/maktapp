@@ -35,7 +35,26 @@ return [
     'Next lesson' => 'Следующий урок',
     'Previous lesson' => 'Предыдущий урок',
     'Today' => 'Сегодня',
-    '' => '',
+    'Create' => 'Создать',
+    'Update' => 'Изменить',
+    'Lesson finished' => 'Урок закончен',
+    'Homework' => 'Домашнее задание',
+    'To edit lesson please go to tab' => 'Для редактирования урока перейдите на вкладку',
+    'My groups' => 'Мои классы',
+    'Lesson time' => 'Время урока',
+    'Week schedule' => 'Расписание на неделю',
+    'One lesson per week. So count of academic hours must be set following this rule.
+        For example, if course must last 20 hours per quarter, for one lesson you must set 20/2 = 10 hours.
+        For other day of week you must create one more lesson.' =>
+        '"Один урок один раз в неделю. Соответственно, количество академ. часов нужно указывать с учетом одного урока в неделю.
+        Например, если на урок выделено 20 часов в четверти по 2 урока в неделю, то на один урок при создании нужно указать 20 / 2 = 10 часов.
+        На другой день недели нужно создать еще один урок."',
+    'Select date of first lesson...' => 'Выберите дату первого урока...',
+    'Create Lesson' => 'Создать урок',
+    'Lessons' => 'Уроки',
+    'Search' => 'Поиск',
+    'Reset' => 'Сбросить',
+    'Update {modelClass}: ' => 'Изменить {modelClass}',
     'Activation email' => '',
     'Journal' => 'Журнал',
     'Students' => 'Ученики',
