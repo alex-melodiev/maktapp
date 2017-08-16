@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="tab-content">
         <div id="menu1" class="tab-pane fade in active text-center">
+            <div class="setting-page">
                 <div class="row">
 
                     <!--col-sm-2-->
@@ -57,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <? endforeach; ?>
 
                 </div>
+            </div>
                 <!--row-->
             <div class="classdata">
 
