@@ -64,3 +64,15 @@
     height: 500px;
     position: relative;
 }
+.lesson-mark[data-val="2"]{
+    color:red;
+}
+.lesson-mark[data-val="3"]{
+    color:#f2d04a;
+}
+.lesson-mark[data-val="4"]{
+    color:#6a9bd9;
+}
+.lesson-mark[data-val="4"]{
+    color:#84d17a;
+}
