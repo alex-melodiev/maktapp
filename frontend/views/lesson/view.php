@@ -171,7 +171,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                             //'header' => '',
                             'submitOnEnter' => false,
                             'options' => [
-                                'class'=>'add-button',
+                                'class'=>['add-button'],
                                 'rows'=>5,
                                 'style'=>'width:400px',
                                 'placeholder'=> Yii::t("frontend","Enter homework...")
