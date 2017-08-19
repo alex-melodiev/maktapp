@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Students Classe
 $this->params['breadcrumbs'][] = $this->title;
 
 
-echo date("H:m:s");
 ?>
 <div class="setting-page">
 <div class="students-class-view">
@@ -68,7 +67,7 @@ echo date("H:m:s");
 
                         </a><!--class-link-->
 
-                        <a href="#" class="class-close"><span class="glyphicon glyphicon-remove"></span></a>
+
 
                     </div>
                     <!--class-block-->
@@ -165,7 +164,7 @@ echo date("H:m:s");
                                         continue;
                                     } ?>
                                     <? $dt = $les->getLessonData($stud->id); ?>
-                                    <td id="lesson-data-<?= $dt->id ?>" mark-type="homework" lesson-data-id="<?= $dt->id ?>"
+                                    <td id="lesson-data-<?= $dt->id ?>" mark-type="homework" data-val="<?= $dt->homework_mark; ?>" lesson-data-id="<?= $dt->id ?>"
                                         class="lesson-mark"> <?
 
                                         // TODO update additional mark
@@ -232,7 +231,7 @@ echo date("H:m:s");
                             <? foreach ($lessons as $les) : if ($les->parent_lesson_id == NULL) {
                                 continue;
                             } ?>
-                                <td><?= date("d M", strtotime($les->lesson_date)) ?></td>
+                                <td><?= date("d", strtotime($les->lesson_date)). ' '.Yii::t('frontend',  date("M", strtotime($les->lesson_date))) ?></td>
                             <? endforeach; ?>
                         </tr>
                         </thead>

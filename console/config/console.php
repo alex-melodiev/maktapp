@@ -22,4 +22,29 @@ return [
             'templateFile' => '@common/rbac/views/migration.php'
         ],
     ],
+    'bootstrap' => ['log', 'podium'],
+    'modules' => [
+        'podium' => 'bizley\podium\Podium',
+    ],
+    'components' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=host_address;dbname=database_name',
+            'username' => 'username',
+            'password' => 'password',
+            'charset' => 'utf8',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [ // TODO Set smtp configuration
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'SMTP host',
+                'username' => 'SMTP username',
+                'password' => 'SMTP password',
+                'port' => 'SMTP port', // optional
+                'encryption' => 'SMTP encryption', // optional
+            ],
+        ],
+    ],
 ];

@@ -3,7 +3,7 @@ $config = [
     'homeUrl'=>Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'site/index',
-    'bootstrap' => ['maintenance'],
+    'bootstrap' => ['maintenance', 'podium'],
     'modules' => [
         'user' => [
             'class' => 'frontend\modules\user\Module',
@@ -17,6 +17,12 @@ $config = [
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
+        ],
+        'podium' => [
+            'class' => 'bizley\podium\Podium',
+            'userComponent' => 'user',
+            'adminId' => 1,
+            //'rbacComponent ' => 'authManager'
         ],
     ],
     'components' => [

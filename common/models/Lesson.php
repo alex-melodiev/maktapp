@@ -168,6 +168,12 @@ class Lesson extends \yii\db\ActiveRecord
         }
     }
 
+    public function getStatusSymbol()
+    {
+        return $this->status == self::PENDING ? '<span class="glyphicons glyphicons-clock"></span>' : '<span class="glyphicons glyphicons-play"></span>';
+            //<span class="glyphicons glyphicons-ok-sign"></span>
+    }
+
     public static function getCurrentLesson()
     {
 //        return Lesson::find()
