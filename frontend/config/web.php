@@ -22,7 +22,7 @@ $config = [
             'class' => 'bizley\podium\Podium',
             'userComponent' => 'user',
             'adminId' => 1,
-            'allowedIPs ' => ['*']
+            'allowedIPs' => ['*']
             //'rbacComponent ' => 'authManager'
         ],
     ],
