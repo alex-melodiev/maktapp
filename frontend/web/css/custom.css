@@ -56,3 +56,23 @@
     vertical-align: middle;
     float: none !important;
 }
+.no-p{
+    border-top: 0 !important;
+    padding-top: 0 !important;
+}
+.overy{
+    height: 500px;
+    position: relative;
+}
+.lesson-mark[data-val="2"]{
+    color:red;
+}
+.lesson-mark[data-val="3"]{
+    color:#f2d04a;
+}
+.lesson-mark[data-val="4"]{
+    color:#6a9bd9;
+}
+.lesson-mark[data-val="5"]{
+    color:#84d17a;
+}

@@ -3,7 +3,7 @@
 
 use yii\helpers\Html;
 echo '<div class="lesson-label">';
-echo '<label class="control-label">Сегодня: </label>';
+echo '<label class="control-label">'.Yii::t("frontend","Today:").'</label>';
 echo \kartik\date\DatePicker::widget([
     'name' => 'monday_date',
     //'type' => \kartik\date\DatePicker::TYPE_INPUT,
@@ -26,7 +26,7 @@ echo '</div>';
 <div class="raspisanie-table mb-30px">
 
     <div class="rt-header text-center">
-        <div class="rt-title">Расписание на неделю</div>
+        <div class="rt-title"><?=Yii::t("frontend","Week schedule")?></div>
         <?
 
         $monday = date( 'Y-m-d', strtotime( 'monday this week', intval($monday_date) ) );
@@ -41,7 +41,7 @@ echo '</div>';
             <thead class="rt-header">
             <tr>
                 <td>№</td>
-                <td>Время урока</td>
+                <td><?=Yii::t("frontend","Lesson time")?></td>
                 <? foreach ($days as $day_key => $day_value) : ?>
                 <td>
                     <?= Yii::t('common', $day_value ); ?>
