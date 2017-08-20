@@ -94,4 +94,8 @@ td.lesson-mark{
 thead td{
     font-weight: bold !important;
 }
+.add-button{
+    background: none;
+    border: 0;
+}
 
