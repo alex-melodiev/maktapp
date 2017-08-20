@@ -164,18 +164,18 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                 'templateBefore' => \kartik\editable\Editable::INLINE_BEFORE_2,
                                 'templateAfter' =>  \kartik\editable\Editable::INLINE_AFTER_2
                             ],
-                            'valueIfNull' => '<span class="glyphicon glyphicon-plus-sign"></span>'.Yii::t("frontend","Give homework"),
+                            'valueIfNull' => '<span class="glyphicon glyphicon-plus-sign"></span> '.Yii::t("frontend","Give homework"),
                             'inputType' => \kartik\editable\Editable::INPUT_TEXTAREA,
                             'model' => $model,
                             'value' => $model->homework,
                             //'header' => '',
                             'submitOnEnter' => false,
                             'options' => [
-                                'class'=>['add-button'],
                                 'rows'=>5,
                                 'style'=>'width:400px',
-                                'placeholder'=> Yii::t("frontend","Enter homework...")
+                                'placeholder'=> Yii::t("frontend","Enter homework..."),
                             ],
+                            'editableValueOptions' => ['class'=>'add-button'],
                             'afterInput' => Html::hiddenInput('homework',$model->homework)
                         ]);
                         ?>
@@ -367,12 +367,12 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                     'submitOnEnter' => false,
                                     'options' => [
                                         'lesson-data-id' => $dat->id,
-                                        'class'=>'add-button',
                                         'rows'=>2,
                                         //'style'=>'width:400px',
                                         'placeholder'=>'',
                                         'displayValue' => '<span class="glyphicon glyphicon-pencil"></span>',
                                     ],
+                                    'editableButtonOptions' => ['class'=>'add-button'],
                                     'afterInput' => Html::hiddenInput('homework_note',$dat->homework_note),
                                     'pluginEvents' => [
                                         "editableSubmit"=>'function(event, val, form) {
@@ -421,12 +421,12 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
                                     'submitOnEnter' => false,
                                     'options' => [
                                         'lesson-data-id' => $dat->id,
-                                        'class'=>'add-button',
                                         'rows'=>2,
                                         //'style'=>'width:400px',
                                         'placeholder'=>'',
                                         'displayValue' => '<span class="glyphicon glyphicon-pencil"></span>',
                                     ],
+                                    'editableButtonOptions' => ['class'=>'add-button'],
                                     'afterInput' => Html::hiddenInput('additional_note',$dat->additional_note),
                                     'pluginEvents' => [
                                         "editableSubmit"=>'function(event, val, form) {
