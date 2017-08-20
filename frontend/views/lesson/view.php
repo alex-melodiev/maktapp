@@ -295,7 +295,7 @@ $time_exploded = explode(":",\common\models\TimingType::findOne(['id' => $model-
 
 
 
-        <div class="raspisanie-table mb-30px">
+        <div class="raspisanie-table mb-30px with-th">
             <div class="rt-table">
                 <table>
                     <thead class="rt-header">

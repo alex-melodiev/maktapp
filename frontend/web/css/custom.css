@@ -76,3 +76,6 @@
 .lesson-mark[data-val="5"]{
     color:#84d17a;
 }
+.with-th .rt-header td{
+    font-weight:700;
+}
