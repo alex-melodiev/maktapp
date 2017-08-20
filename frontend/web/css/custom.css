@@ -76,6 +76,22 @@
 .lesson-mark[data-val="5"]{
     color:#84d17a;
 }
+<<<<<<< HEAD
 .with-th .rt-header td{
     font-weight:700;
 }
+=======
+td.lesson-mark{
+    font-weight: bold !important;
+    font-size: 16px !important;;
+    text-align: center;
+    cursor: copy;
+    /*width: 40px;*/
+}
+.evaluation-list .eval{
+    cursor: pointer;
+}
+thead td{
+    font-weight: bold !important;
+}
+>>>>>>> c7cf1da0bbcdac8af4e55357949f6b5eed87b725

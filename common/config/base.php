@@ -4,8 +4,8 @@ $config = [
     'vendorPath'=>dirname(dirname(__DIR__)).'/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage'=>'en-US',
-    'language'=>'en-US',
-    'bootstrap' => ['log'],
+    'language'=>'ru-RU',
+    'bootstrap' => ['log', 'podium'],
     'components' => [
 
         'authManager' => [
@@ -148,6 +148,15 @@ $config = [
             ],
             require(Yii::getAlias('@storage/config/_urlManager.php'))
         )
+    ],
+    'modules' => [
+        'podium' => [
+            'class' => 'bizley\podium\Podium',
+            'userComponent' => 'user',
+            'adminId' => 1,
+            'allowedIPs' => ['*']
+            //'rbacComponent ' => 'authManager'
+        ],
     ],
     'params' => [
         'adminEmail' => env('ADMIN_EMAIL'),
