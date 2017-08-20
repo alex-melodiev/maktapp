@@ -30,6 +30,7 @@
 }
 .blue-link{
     font-weight: 700;
+    color:#155873;
 }
 .lesson-label{
     text-align: center;
@@ -76,11 +77,10 @@
 .lesson-mark[data-val="5"]{
     color:#84d17a;
 }
-<<<<<<< HEAD
+
 .with-th .rt-header td{
     font-weight:700;
 }
-=======
 td.lesson-mark{
     font-weight: bold !important;
     font-size: 16px !important;;
@@ -94,4 +94,4 @@ td.lesson-mark{
 thead td{
     font-weight: bold !important;
 }
->>>>>>> c7cf1da0bbcdac8af4e55357949f6b5eed87b725
+
