@@ -99,3 +99,12 @@ thead td{
     border: 0;
 }
 
+@media(min-width:992px) and (max-width:1199px){
+    .header-nav ul li{
+        padding-left:0;
+    }
+    .header-nav ul li a{
+        font-size:14px;
+        padding: 10px;
+    }
+}
